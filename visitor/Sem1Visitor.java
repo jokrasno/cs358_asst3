@@ -48,4 +48,51 @@ public class Sem1Visitor extends Visitor
         return null;
     }
 
+    @Override
+    public Object visit(ClassDecl n)
+    {
+        // put name into class environment if it doesn't exist
+        if (classEnv.containsKey(n.name))
+        {
+            errorMsg.error(n.pos, CompError.DuplicateClass(n.name));
+        }
+        else
+        {
+            classEnv.put(n.name, n);
+        }
+        currentClass = n;
+        n.decls.accept(this);
+
+        return null;
+    }
+
+    @Override
+    public Object visit(MethodDecl n)
+    {
+        if (currentClass.methodEnv.containsKey(n.name))
+        {
+            errorMsg.error(n.pos, CompError.DuplicateMethod(n.name));
+        }
+        currentClass.methodEnv.put(n.name, n);
+        n.params.accept(this);
+        n.stmts.accept(this);
+        return null;
+    }
+
+    @Override
+    public Object visit(FieldDecl n)
+    {
+        if (currentClass.fieldEnv.containsKey(n.name))
+        {
+            errorMsg.error(n.pos, CompError.DuplicateField(n.name));
+        }
+        // check if field name is "length"
+        if (n.name.equals("length"))
+        {
+            errorMsg.error(n.pos, CompError.IllegalLength());
+        }
+        currentClass.fieldEnv.put(n.name, n);
+        n.type.accept(this);
+        return null;
+    }
 }
