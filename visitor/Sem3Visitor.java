@@ -31,7 +31,7 @@ public class Sem3Visitor extends Visitor
     HashSet<String> unusedClasses;
 
     // set of unused local variables
-    HashMap<String> unusedLocals;
+    HashSet<String> unusedLocals;
 
     // stack of while/switch
     Stack<BreakTarget> breakTargetStack;
@@ -49,4 +49,65 @@ public class Sem3Visitor extends Visitor
         breakTargetStack = new Stack<BreakTarget>();
     }
 
+    // link variable refrences to declarations
+    @Override
+    public Object visit(IDExp n)
+    {
+        // check local environment
+        if (localEnv.containsKey(n.name))
+        {
+            n.link = localEnv.get(n.name);
+
+            // check if initialized
+            if (!init.contains(n.name))
+            {
+                errorMsg.error(n.pos, CompError.UninitializedVariable(n.name));
+            }
+
+            // mark as used
+            if (unusedLocals != null && unusedLocals.contains(n.name))
+            {
+                unusedLocals.remove(n.name);
+            }
+        }
+        else if (currentClass != null)
+        {
+            ClassDecl c = currentClass;
+            while (c != null)
+            {
+                if (c.fieldEnv.containsKey(n.name))
+                {
+                    n.link = c.fieldEnv.get(n.name);
+                    return null;
+                }
+                c = c.superLink;
+            }
+            // not found anywhere
+            errorMsg.error(n.pos, CompError.UndefinedVariable(n.name));
+        }
+
+        return null;
+    }
+
+    // @Override 
+    // public Object visit(IDType n)
+    // {
+    //     if (classEnv.containsKey(n.name))
+    //     {
+    //         n.link = classEnv.get(n.name);
+
+    //         // mark class as used
+    //         if (unusedClasses != null && unusedClasses.contains(n.name))
+    //         {
+    //             unusedClasses.remove(n.name);
+    //         }
+    //     }
+
+        
+    //     else
+    //     { 
+    //         errorMsg.error(n.pos, CompError.UndefinedClass(n.name));
+    //     }
+    //     return null;
+    // }
 }
