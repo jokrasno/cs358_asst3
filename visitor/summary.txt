@@ -1,0 +1,16 @@
+TESTS                   : (crash fail mismatch succeede) / total
+local variables         : (    0    3       14        8) /    25
+Invalid inheritance     : (    0    0        0        2) /     2
+uninitialized variables : (    0    0        2        1) /     3
+break statements        : (    4    0        0        2) /     6
+uninitialized variables : (    0    0        1        0) /     1
+class names             : (    0    5       22       12) /    39
+fields                  : (    0    0       20        4) /    24
+predefined classes      : (    0    0       26        0) /    26
+casts and instanceof    : (    0    0        2        0) /     2
+switch statements       : (    0    0        1        3) /     4
+
+EXTRA CREDIT            : (crash fail mismatch succeede) / total
+unused variables        : (    0    0        1        0) /     1
+
+Total Score:  29 / 100
