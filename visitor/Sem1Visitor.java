@@ -55,11 +55,10 @@ public class Sem1Visitor extends Visitor
         if (classEnv.containsKey(n.name))
         {
             errorMsg.error(n.pos, CompError.DuplicateClass(n.name));
+            return null;
         }
-        else
-        {
-            classEnv.put(n.name, n);
-        }
+
+        classEnv.put(n.name, n);
         currentClass = n;
         n.decls.accept(this);
 
@@ -73,7 +72,10 @@ public class Sem1Visitor extends Visitor
         {
             errorMsg.error(n.pos, CompError.DuplicateMethod(n.name));
         }
-        currentClass.methodEnv.put(n.name, n);
+        else
+        {
+            currentClass.methodEnv.put(n.name, n);
+        }
         n.params.accept(this);
         n.stmts.accept(this);
         return null;
@@ -82,16 +84,25 @@ public class Sem1Visitor extends Visitor
     @Override
     public Object visit(FieldDecl n)
     {
+        boolean isDuplicate = false;
+        boolean isIllegalLength = false;
+
         if (currentClass.fieldEnv.containsKey(n.name))
         {
             errorMsg.error(n.pos, CompError.DuplicateField(n.name));
+            isDuplicate = true;
         }
         // check if field name is "length"
         if (n.name.equals("length"))
         {
             errorMsg.error(n.pos, CompError.IllegalLength());
+            isIllegalLength = true;
         }
-        currentClass.fieldEnv.put(n.name, n);
+
+        if (!isDuplicate && !isIllegalLength)
+        {
+            currentClass.fieldEnv.put(n.name, n);
+        }
         n.type.accept(this);
         return null;
     }

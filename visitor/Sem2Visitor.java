@@ -23,15 +23,48 @@ public class Sem2Visitor extends Visitor
         classEnv = env;
     }
 
+    @Override
+    public Object visit(Program n)
+    {
+        // Pass 1: link each class to its superclass.
+        n.classDecls.accept(this);
+
+        // Pass 2: detect cycles and report each class that participates.
+        HashMap<ClassDecl, Integer> visitState = new HashMap<ClassDecl, Integer>();
+        HashSet<ClassDecl> cycleParticipants = new HashSet<ClassDecl>();
+
+        for (ClassDecl cls : n.classDecls)
+        {
+            if (!visitState.containsKey(cls))
+            {
+                markCycleParticipants(cls, visitState, cycleParticipants);
+            }
+        }
+
+        for (ClassDecl cls : n.classDecls)
+        {
+            if (cycleParticipants.contains(cls))
+            {
+                errorMsg.error(cls.pos, CompError.InheritanceCycle(cls.name));
+            }
+        }
+
+        n.mainStmt.accept(this);
+        return null;
+    }
+
     // Link each ClassDecl to the ClassDecl for its superclass via its 'superLink'
     @Override
     public Object visit(ClassDecl n)
     {
+        n.superLink = null;
+
         // SuperClass checking
         if (n.superName.equals("Object"))
         {
-            n.superLink = classEnv.get("Object");
-            classEnv.get("Object").subclasses.add(n);
+            ClassDecl objectClass = classEnv.get("Object");
+            n.superLink = objectClass;
+            addSubclassLink(objectClass, n);
         }
         else if (n.superName.equals("String") || n.superName.equals("RunMain"))
         {
@@ -39,30 +72,60 @@ public class Sem2Visitor extends Visitor
         }
         else if (classEnv.containsKey(n.superName))
         {
-            n.superLink = classEnv.get(n.superName);
-            classEnv.get(n.superName).subclasses.add(n);
+            ClassDecl superClass = classEnv.get(n.superName);
+            n.superLink = superClass;
+            addSubclassLink(superClass, n);
         }
         else
         {
             errorMsg.error(n.pos, CompError.UndefinedSuperclass(n.superName));
         }
 
-        // For each class C, follow superlink chain. If more than total clases before hitting null, there's a cycle
-        ClassDecl current = n;
-        int count = 0;
+        return null;
+    }
+
+    private void addSubclassLink(ClassDecl superClass, ClassDecl subClass)
+    {
+        if (superClass != null && !superClass.subclasses.contains(subClass))
+        {
+            superClass.subclasses.add(subClass);
+        }
+    }
+
+    private void markCycleParticipants(ClassDecl start,
+                                       HashMap<ClassDecl, Integer> visitState,
+                                       HashSet<ClassDecl> cycleParticipants)
+    {
+        ArrayList<ClassDecl> path = new ArrayList<ClassDecl>();
+        HashMap<ClassDecl, Integer> indexInPath = new HashMap<ClassDecl, Integer>();
+        ClassDecl current = start;
+
         while (current != null)
         {
-            current = current.superLink;
-            count++;
-            if (count > classEnv.size())
+            Integer state = visitState.get(current);
+            if (state != null)
             {
-                errorMsg.error(n.pos, CompError.InheritanceCycle(n.name));
+                if (state == 1 && indexInPath.containsKey(current))
+                {
+                    int cycleStart = indexInPath.get(current);
+                    for (int i = cycleStart; i < path.size(); i++)
+                    {
+                        cycleParticipants.add(path.get(i));
+                    }
+                }
                 break;
             }
-        }
-        
 
-        return null;
+            visitState.put(current, 1);
+            indexInPath.put(current, path.size());
+            path.add(current);
+            current = current.superLink;
+        }
+
+        for (ClassDecl cls : path)
+        {
+            visitState.put(cls, 2);
+        }
     }
 
 }

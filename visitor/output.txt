@@ -2,8 +2,7 @@
 
 CATEGORY: break statements
 
-PROGRAM CRASHED!!!
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> break in inner loop
 class Main { // class Check3 {
@@ -31,12 +30,57 @@ Your output:
 
 Solution output:
 
+TREES:
+
+solution:                                | Yours:
+Program # 29                            | Program # 63
+ *====list====*                         |  *====list====*
+  ClassDecl[Main,Object] # 5 @ 147      |   ClassDecl[Main,Object] # 39 @ 68
+   *====list====*                       |    *====list====*
+    MethodDeclVoid[main] # 4 @ not set  |     MethodDeclVoid[main] # 38 @ not set
+     *====list====*                     |      *====list====*
+     *====list====*                     |      *====list====*
+      CallStmt # 3                      |       CallStmt # 37
+       Call[exec] # 2 @ not set         |        Call[exec] # 36 @ not set
+        *====list====*                  |         *====list====*
+        NewObject # 1                   |         NewObject # 35
+         IDType[Check3a] # 0 @ 28       |          IDType[Check3a] # 34 @ 62
+  ClassDecl[Check3a,Object] # 28 @ 147  |   ClassDecl[Check3a,Object] # 62 @ 68
+   *====list====*                       |    *====list====*
+    MethodDeclVoid[exec] # 27 @ not set |     MethodDeclVoid[exec] # 61 @ not set
+     *====list====*                     |      *====list====*
+     *====list====*                     |      *====list====*
+      LocalDeclStmt # 9                 |       LocalDeclStmt # 43
+       LocalVarDecl[a] # 8              |        LocalVarDecl[a] # 42
+        IntType # 6                     |         IntType # 40
+        IntLit[5] # 7                   |         IntLit[5] # 41
+      While # 26                        |       While # 60
+       GreaterThan # 12                 |        GreaterThan # 46
+        IDExp[a] # 10 @ 8               |         IDExp[a] # 44 @ 42
+        IntLit[30] # 11                 |         IntLit[30] # 45
+       Block # 25                       |        Block # 59
+        *====list====*                  |         *====list====*
+         While # 24                     |          While # 58
+          GreaterThan # 15              |           GreaterThan # 49
+           IDExp[a] # 13 @ 8            |            IDExp[a] # 47 @ 42
+           IntLit[0] # 14               |            IntLit[0] # 48
+          Block # 23                    |           Block # 57
+           *====list====*               |            *====list====*
+            If # 22                     |             If # 56
+             GreaterThan # 18           |              GreaterThan # 52
+              IDExp[a] # 16 @ 8         |               IDExp[a] # 50 @ 42
+              IntLit[5] # 17            |               IntLit[5] # 51
+             Block # 20                 |              Block # 54
+              *====list====*            |               *====list====*
+               Break # 19 @ 24          |                Break # 53 @ 58
+             Block # 21                 |              Block # 55
+              *====list====*            |               *====list====*
+
 ================================================================================
 
 CATEGORY: break statements
 
-PROGRAM CRASHED!!!
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> break in outer loop, before inner loop
 class Main { // class Check4 {
@@ -62,12 +106,55 @@ Your output:
 
 Solution output:
 
+TREES:
+
+solution:                                 | Yours:
+Program # 458                            | Program # 491
+ *====list====*                          |  *====list====*
+  ClassDecl[Main,Object] # 435 @ 575     |   ClassDecl[Main,Object] # 468 @ 496
+   *====list====*                        |    *====list====*
+    MethodDeclVoid[main] # 434 @ not set |     MethodDeclVoid[main] # 467 @ not set
+     *====list====*                      |      *====list====*
+     *====list====*                      |      *====list====*
+      CallStmt # 433                     |       CallStmt # 466
+       Call[exec] # 432 @ not set        |        Call[exec] # 465 @ not set
+        *====list====*                   |         *====list====*
+        NewObject # 431                  |         NewObject # 464
+         IDType[Check4a] # 430 @ 457     |          IDType[Check4a] # 463 @ 490
+  ClassDecl[Check4a,Object] # 457 @ 575  |   ClassDecl[Check4a,Object] # 490 @ 496
+   *====list====*                        |    *====list====*
+    MethodDeclVoid[exec] # 456 @ not set |     MethodDeclVoid[exec] # 489 @ not set
+     *====list====*                      |      *====list====*
+     *====list====*                      |      *====list====*
+      LocalDeclStmt # 439                |       LocalDeclStmt # 472
+       LocalVarDecl[a] # 438             |        LocalVarDecl[a] # 471
+        IntType # 436                    |         IntType # 469
+        IntLit[5] # 437                  |         IntLit[5] # 470
+      While # 455                        |       While # 488
+       GreaterThan # 442                 |        GreaterThan # 475
+        IDExp[a] # 440 @ 438             |         IDExp[a] # 473 @ 471
+        IntLit[30] # 441                 |         IntLit[30] # 474
+       Block # 454                       |        Block # 487
+        *====list====*                   |         *====list====*
+         If # 448                        |          If # 481
+          GreaterThan # 445              |           GreaterThan # 478
+           IDExp[a] # 443 @ 438          |            IDExp[a] # 476 @ 471
+           IntLit[500] # 444             |            IntLit[500] # 477
+          Break # 446 @ 455              |           Break # 479 @ 488
+          Block # 447                    |           Block # 480
+           *====list====*                |            *====list====*
+         While # 453                     |          While # 486
+          GreaterThan # 451              |           GreaterThan # 484
+           IDExp[a] # 449 @ 438          |            IDExp[a] # 482 @ 471
+           IntLit[0] # 450               |            IntLit[0] # 483
+          Block # 452                    |           Block # 485
+           *====list====*                |            *====list====*
+
 ================================================================================
 
 CATEGORY: break statements
 
-PROGRAM CRASHED!!!
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> break in outer loop, after inner loop
 class Main { // class Check4 {
@@ -92,12 +179,55 @@ Your output:
 
 Solution output:
 
+TREES:
+
+solution:                                 | Yours:
+Program # 682                            | Program # 715
+ *====list====*                          |  *====list====*
+  ClassDecl[Main,Object] # 659 @ 799     |   ClassDecl[Main,Object] # 692 @ 720
+   *====list====*                        |    *====list====*
+    MethodDeclVoid[main] # 658 @ not set |     MethodDeclVoid[main] # 691 @ not set
+     *====list====*                      |      *====list====*
+     *====list====*                      |      *====list====*
+      CallStmt # 657                     |       CallStmt # 690
+       Call[exec] # 656 @ not set        |        Call[exec] # 689 @ not set
+        *====list====*                   |         *====list====*
+        NewObject # 655                  |         NewObject # 688
+         IDType[Check4a] # 654 @ 681     |          IDType[Check4a] # 687 @ 714
+  ClassDecl[Check4a,Object] # 681 @ 799  |   ClassDecl[Check4a,Object] # 714 @ 720
+   *====list====*                        |    *====list====*
+    MethodDeclVoid[exec] # 680 @ not set |     MethodDeclVoid[exec] # 713 @ not set
+     *====list====*                      |      *====list====*
+     *====list====*                      |      *====list====*
+      LocalDeclStmt # 663                |       LocalDeclStmt # 696
+       LocalVarDecl[a] # 662             |        LocalVarDecl[a] # 695
+        IntType # 660                    |         IntType # 693
+        IntLit[5] # 661                  |         IntLit[5] # 694
+      While # 679                        |       While # 712
+       GreaterThan # 666                 |        GreaterThan # 699
+        IDExp[a] # 664 @ 662             |         IDExp[a] # 697 @ 695
+        IntLit[30] # 665                 |         IntLit[30] # 698
+       Block # 678                       |        Block # 711
+        *====list====*                   |         *====list====*
+         While # 671                     |          While # 704
+          GreaterThan # 669              |           GreaterThan # 702
+           IDExp[a] # 667 @ 662          |            IDExp[a] # 700 @ 695
+           IntLit[0] # 668               |            IntLit[0] # 701
+          Block # 670                    |           Block # 703
+           *====list====*                |            *====list====*
+         If # 677                        |          If # 710
+          GreaterThan # 674              |           GreaterThan # 707
+           IDExp[a] # 672 @ 662          |            IDExp[a] # 705 @ 695
+           IntLit[500] # 673             |            IntLit[500] # 706
+          Break # 675 @ 679              |           Break # 708 @ 712
+          Block # 676                    |           Block # 709
+           *====list====*                |            *====list====*
+
 ================================================================================
 
 CATEGORY: break statements
 
-PROGRAM CRASHED!!!
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> break in loop
 class Main { // class Test72 {
@@ -122,12 +252,51 @@ Your output:
 
 Solution output:
 
+TREES:
+
+solution:                                 | Yours:
+Program # 902                            | Program # 931
+ *====list====*                          |  *====list====*
+  ClassDecl[Main,Object] # 883 @ 1015    |   ClassDecl[Main,Object] # 912 @ 936
+   *====list====*                        |    *====list====*
+    MethodDeclVoid[main] # 882 @ not set |     MethodDeclVoid[main] # 911 @ not set
+     *====list====*                      |      *====list====*
+     *====list====*                      |      *====list====*
+      CallStmt # 881                     |       CallStmt # 910
+       Call[exec] # 880 @ not set        |        Call[exec] # 909 @ not set
+        *====list====*                   |         *====list====*
+        NewObject # 879                  |         NewObject # 908
+         IDType[Test72a] # 878 @ 901     |          IDType[Test72a] # 907 @ 930
+  ClassDecl[Test72a,Object] # 901 @ 1015 |   ClassDecl[Test72a,Object] # 930 @ 936
+   *====list====*                        |    *====list====*
+    MethodDeclVoid[exec] # 900 @ not set |     MethodDeclVoid[exec] # 929 @ not set
+     *====list====*                      |      *====list====*
+     *====list====*                      |      *====list====*
+      LocalDeclStmt # 887                |       LocalDeclStmt # 916
+       LocalVarDecl[a] # 886             |        LocalVarDecl[a] # 915
+        IntType # 884                    |         IntType # 913
+        IntLit[4] # 885                  |         IntLit[4] # 914
+      While # 899                        |       While # 928
+       GreaterThan # 890                 |        GreaterThan # 919
+        IDExp[a] # 888 @ 886             |         IDExp[a] # 917 @ 915
+        IntLit[0] # 889                  |         IntLit[0] # 918
+       Block # 898                       |        Block # 927
+        *====list====*                   |         *====list====*
+         If # 897                        |          If # 926
+          GreaterThan # 893              |           GreaterThan # 922
+           IDExp[a] # 891 @ 886          |            IDExp[a] # 920 @ 915
+           IntLit[5] # 892               |            IntLit[5] # 921
+          Block # 895                    |           Block # 924
+           *====list====*                |            *====list====*
+            Break # 894 @ 899            |             Break # 923 @ 928
+          Block # 896                    |           Block # 925
+           *====list====*                |            *====list====*
+
 ================================================================================
 
 CATEGORY: class names
 
-Mismatched output
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> local array-variable decl: user-defined class Main { // class
 
@@ -147,7 +316,6 @@ class Something { }
 
 Your output:
 
-Test35.java::14.7(warning): unused class Something
 
 Solution output:
 
@@ -174,7 +342,7 @@ Program # 1489                              | Program # 1511
       LocalDeclStmt # 1482                  |       LocalDeclStmt # 1504
        LocalVarDecl[x] # 1481               |        LocalVarDecl[x] # 1503
         ArrayType # 1479                    |         ArrayType # 1501
-         IDType[Something] # 1478 @ 1488    |          IDType[Something] # 1500 @ not set
+         IDType[Something] # 1478 @ 1488    |          IDType[Something] # 1500 @ 1510
         Null # 1480                         |         Null # 1502
       Assign # 1485                         |       Assign # 1507
        IDExp[x] # 1483 @ 1481               |        IDExp[x] # 1505 @ 1503
@@ -186,37 +354,7 @@ Program # 1489                              | Program # 1511
 
 CATEGORY: class names
 
-Program run when it should have errored
-
-Origonal program:
-//==> undefined class name: formal parameter context
-
-class Main {
-    public void main() {
-	new Error12a().exec();
-    }
-}
-class Error12a {
-    public void exec() {
-    }
-    public void abc(Something x) {
-	x = x;
-    }
-}
-
-
-Your output:
-
-
-Solution output:
-Error12.java::11.21: Undefined class name Something
-
-================================================================================
-
-CATEGORY: class names
-
-Mismatched output
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> for-loop index: user-defined class Main { // class
 
@@ -237,7 +375,6 @@ class Something { }
 
 Your output:
 
-Test33.java::15.7(warning): unused class Something
 
 Solution output:
 
@@ -265,7 +402,7 @@ Program # 2094                              | Program # 2121
        *====list====*                       |        *====list====*
         LocalDeclStmt # 2081                |         LocalDeclStmt # 2108
          LocalVarDecl[z] # 2080             |          LocalVarDecl[z] # 2107
-          IDType[Something] # 2078 @ 2093   |           IDType[Something] # 2105 @ not set
+          IDType[Something] # 2078 @ 2093   |           IDType[Something] # 2105 @ 2120
           Null # 2079                       |           Null # 2106
         While # 2089                        |         While # 2116
          True # 2086                        |          True # 2113
@@ -436,7 +573,7 @@ Program # 2688                            | Program # 2711
      *====list====*                       |      *====list====*
       LocalDeclStmt # 2682                |       LocalDeclStmt # 2705
        LocalVarDecl[x] # 2681             |        LocalVarDecl[x] # 2704
-        IDType[Object] # 2676 @ 2795      |         IDType[Object] # 2699 @ not set
+        IDType[Object] # 2676 @ 2795      |         IDType[Object] # 2699 @ 2716
         NewArray # 2680                   |         NewArray # 2703
          ArrayType # 2679                 |          ArrayType # 2702
           IDType[Main] # 2677 @ 2675      |           IDType[Main] # 2700 @ 2698
@@ -494,7 +631,7 @@ Program # 3080                              | Program # 3103
      *====list====*                         |      *====list====*
       LocalDeclStmt # 3073                  |       LocalDeclStmt # 3096
        LocalVarDecl[x] # 3072               |        LocalVarDecl[x] # 3095
-        IDType[Object] # 3068 @ 3187        |         IDType[Object] # 3091 @ not set
+        IDType[Object] # 3068 @ 3187        |         IDType[Object] # 3091 @ 3108
         NewArray # 3071                     |         NewArray # 3094
          IDType[Something] # 3069 @ 3079    |          IDType[Something] # 3092 @ 3102
          IntLit[333] # 3070                 |          IntLit[333] # 3093
@@ -553,7 +690,7 @@ Program # 3474                            | Program # 3495
       LocalDeclStmt # 3468                |       LocalDeclStmt # 3489
        LocalVarDecl[x] # 3467             |        LocalVarDecl[x] # 3488
         ArrayType # 3465                  |         ArrayType # 3486
-         IDType[Main] # 3464 @ 3463       |          IDType[Main] # 3485 @ not set
+         IDType[Main] # 3464 @ 3463       |          IDType[Main] # 3485 @ 3484
         Null # 3466                       |         Null # 3487
       Assign # 3471                       |       Assign # 3492
        IDExp[x] # 3469 @ 3467             |        IDExp[x] # 3490 @ 3488
@@ -563,8 +700,7 @@ Program # 3474                            | Program # 3495
 
 CATEGORY: class names
 
-Mismatched output
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> local var: user-defined class
 
@@ -584,7 +720,6 @@ class Something { }
 
 Your output:
 
-Test28.java::14.7(warning): unused class Something
 
 Solution output:
 
@@ -610,7 +745,7 @@ Program # 4064                              | Program # 4085
      *====list====*                         |      *====list====*
       LocalDeclStmt # 4057                  |       LocalDeclStmt # 4078
        LocalVarDecl[x] # 4056               |        LocalVarDecl[x] # 4077
-        IDType[Something] # 4054 @ 4063     |         IDType[Something] # 4075 @ not set
+        IDType[Something] # 4054 @ 4063     |         IDType[Something] # 4075 @ 4084
         Null # 4055                         |         Null # 4076
       Assign # 4060                         |       Assign # 4081
        IDExp[x] # 4058 @ 4056               |        IDExp[x] # 4079 @ 4077
@@ -622,36 +757,7 @@ Program # 4064                              | Program # 4085
 
 CATEGORY: class names
 
-Program run when it should have errored
-
-Origonal program:
-//==> undefined class name: local var decl context
-
-class Main {
-    public void main() {
-	new Error9a().exec();
-    }
-}
-class Error9a {
-    public void exec() {
-	Something x = null;
-	x = x;
-    }
-}
-
-
-Your output:
-
-
-Solution output:
-Error09.java::10.2: Undefined class name Something
-
-================================================================================
-
-CATEGORY: class names
-
-Mismatched output
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> new: user-defined class
 
@@ -676,7 +782,6 @@ class Something {
 
 Your output:
 
-Test27.java::8.7(warning): unused class Test27a
 
 Solution output:
 
@@ -702,12 +807,12 @@ Program # 4471                              | Program # 4501
      *====list====*                         |      *====list====*
       LocalDeclStmt # 4456                  |       LocalDeclStmt # 4486
        LocalVarDecl[x] # 4455               |        LocalVarDecl[x] # 4485
-        IDType[Object] # 4452 @ 4585        |         IDType[Object] # 4482 @ not set
+        IDType[Object] # 4452 @ 4585        |         IDType[Object] # 4482 @ 4506
         NewObject # 4454                    |         NewObject # 4484
          IDType[Something] # 4453 @ 4470    |          IDType[Something] # 4483 @ 4500
       LocalDeclStmt # 4460                  |       LocalDeclStmt # 4490
        LocalVarDecl[zzz] # 4459             |        LocalVarDecl[zzz] # 4489
-        IDType[Test27a] # 4457 @ 4468       |         IDType[Test27a] # 4487 @ not set
+        IDType[Test27a] # 4457 @ 4468       |         IDType[Test27a] # 4487 @ 4498
         Null # 4458                         |         Null # 4488
       CallStmt # 4463                       |       CallStmt # 4493
        Call[exec] # 4462 @ not set          |        Call[exec] # 4492 @ not set
@@ -777,36 +882,7 @@ Program # 4677                            | Program # 4695
 
 CATEGORY: class names
 
-Program run when it should have errored
-
-Origonal program:
-//==> undefined class name: multi-dim array decl context
-
-class Main {
-public    void main() {
-	new Error17a().exec();
-    }
-}
-class Error17a {
-    public void exec() {
-	Something[][] x = null;
-	x = x;
-    }
-}
-
-
-Your output:
-
-
-Solution output:
-Error17.java::10.2: Undefined class name Something
-
-================================================================================
-
-CATEGORY: class names
-
-Mismatched output
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> local 2D array decl: user-defined class Main { // class
 
@@ -826,7 +902,6 @@ class Something { }
 
 Your output:
 
-Test36.java::14.7(warning): unused class Something
 
 Solution output:
 
@@ -854,42 +929,13 @@ Program # 5078                              | Program # 5101
        LocalVarDecl[x] # 5070               |        LocalVarDecl[x] # 5093
         ArrayType # 5068                    |         ArrayType # 5091
          ArrayType # 5067                   |          ArrayType # 5090
-          IDType[Something] # 5066 @ 5077   |           IDType[Something] # 5089 @ not set
+          IDType[Something] # 5066 @ 5077   |           IDType[Something] # 5089 @ 5100
         Null # 5069                         |         Null # 5092
       Assign # 5074                         |       Assign # 5097
        IDExp[x] # 5072 @ 5070               |        IDExp[x] # 5095 @ 5093
        Null # 5073                          |        Null # 5096
   ClassDecl[Something,Object] # 5077 @ 5185 |   ClassDecl[Something,Object] # 5100 @ 5106
    *====list====*                           |    *====list====*
-
-================================================================================
-
-CATEGORY: class names
-
-Program run when it should have errored
-
-Origonal program:
-//==> undefined class name: for-loop index decl context
-
-class Main {
-    public void main() {
-	new Error14a().exec();
-    }
-}
-class Error14a {
-    public void exec() {
-	for (Something z = null;;) {
-        z = z;
-	}
-    }
-}
-
-
-Your output:
-
-
-Solution output:
-Error14.java::10.7: Undefined class name Something
 
 ================================================================================
 
@@ -941,7 +987,7 @@ Program # 5488                            | Program # 5507
     MethodDeclVoid[abc] # 5486 @ not set  |     MethodDeclVoid[abc] # 5505 @ not set
      *====list====*                       |      *====list====*
       ParamDecl[x] # 5482                 |       ParamDecl[x] # 5501
-       IDType[Main] # 5481 @ 5479         |        IDType[Main] # 5500 @ not set
+       IDType[Main] # 5481 @ 5479         |        IDType[Main] # 5500 @ 5498
      *====list====*                       |      *====list====*
       Assign # 5485                       |       Assign # 5504
        IDExp[x] # 5483 @ 5482             |        IDExp[x] # 5502 @ 5501
@@ -1053,7 +1099,7 @@ Program # 6099                            | Program # 6121
        LocalVarDecl[x] # 6092             |        LocalVarDecl[x] # 6114
         ArrayType # 6090                  |         ArrayType # 6112
          ArrayType # 6089                 |          ArrayType # 6111
-          IDType[Main] # 6088 @ 6087      |           IDType[Main] # 6110 @ not set
+          IDType[Main] # 6088 @ 6087      |           IDType[Main] # 6110 @ 6109
         Null # 6091                       |         Null # 6113
       Assign # 6096                       |       Assign # 6118
        IDExp[x] # 6094 @ 6092             |        IDExp[x] # 6116 @ 6114
@@ -1063,8 +1109,7 @@ Program # 6099                            | Program # 6121
 
 CATEGORY: class names
 
-Mismatched output
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> extends: user-defined class
 
@@ -1082,7 +1127,6 @@ class Something { }
 
 Your output:
 
-Test26.java::12.7(warning): unused class Something
 
 Solution output:
 
@@ -1108,34 +1152,6 @@ Program # 6293                               | Program # 6307
      *====list====*                          |      *====list====*
   ClassDecl[Something,Object] # 6292 @ 6391  |   ClassDecl[Something,Object] # 6306 @ 6312
    *====list====*                            |    *====list====*
-
-================================================================================
-
-CATEGORY: class names
-
-Program run when it should have errored
-
-Origonal program:
-//==> undefined class name: array declaration context
-
-class Main {
-public    void main() {
-	new Error10a().exec();
-    }
-}
-class Error10a {
-    public void exec() {
-	Something[] x = null;
-    x = x;
-    }
-}
-
-
-Your output:
-
-
-Solution output:
-Error16.java::10.2: Undefined class name Something
 
 ================================================================================
 
@@ -1186,8 +1202,7 @@ Program # 6678                            | Program # 6691
 
 CATEGORY: class names
 
-Mismatched output
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> new: main class Main { // class
 
@@ -1206,7 +1221,6 @@ class Test38a {
 
 Your output:
 
-Test38.java::8.7(warning): unused class Test38a
 
 Solution output:
 
@@ -1232,7 +1246,7 @@ Program # 6870                            | Program # 6891
      *====list====*                       |      *====list====*
       LocalDeclStmt # 6864                |       LocalDeclStmt # 6885
        LocalVarDecl[x] # 6863             |        LocalVarDecl[x] # 6884
-        IDType[Object] # 6860 @ 6975      |         IDType[Object] # 6881 @ not set
+        IDType[Object] # 6860 @ 6975      |         IDType[Object] # 6881 @ 6896
         NewObject # 6862                  |         NewObject # 6883
          IDType[Main] # 6861 @ 6859       |          IDType[Main] # 6882 @ 6880
       Assign # 6867                       |       Assign # 6888
@@ -1287,7 +1301,7 @@ Program # 7487                            | Program # 7507
      *====list====*                       |      *====list====*
       LocalDeclStmt # 7481                |       LocalDeclStmt # 7501
        LocalVarDecl[x] # 7480             |        LocalVarDecl[x] # 7500
-        IDType[Main] # 7478 @ 7477        |         IDType[Main] # 7498 @ not set
+        IDType[Main] # 7478 @ 7477        |         IDType[Main] # 7498 @ 7497
         Null # 7479                       |         Null # 7499
       Assign # 7484                       |       Assign # 7504
        IDExp[x] # 7482 @ 7480             |        IDExp[x] # 7502 @ 7500
@@ -1344,7 +1358,7 @@ Program # 8279                            | Program # 8305
        *====list====*                     |        *====list====*
         LocalDeclStmt # 8267              |         LocalDeclStmt # 8293
          LocalVarDecl[z] # 8266           |          LocalVarDecl[z] # 8292
-          IDType[Main] # 8264 @ 8263      |           IDType[Main] # 8290 @ not set
+          IDType[Main] # 8264 @ 8263      |           IDType[Main] # 8290 @ 8289
           Null # 8265                     |           Null # 8291
         While # 8275                      |         While # 8301
          True # 8272                      |          True # 8298
@@ -1407,7 +1421,7 @@ Program # 8487                              | Program # 8511
      *====list====*                         |      *====list====*
       LocalDeclStmt # 8480                  |       LocalDeclStmt # 8504
        LocalVarDecl[x] # 8479               |        LocalVarDecl[x] # 8503
-        IDType[Object] # 8474 @ 8595        |         IDType[Object] # 8498 @ not set
+        IDType[Object] # 8474 @ 8595        |         IDType[Object] # 8498 @ 8516
         NewArray # 8478                     |         NewArray # 8502
          ArrayType # 8477                   |          ArrayType # 8501
           IDType[Something] # 8475 @ 8486   |           IDType[Something] # 8499 @ 8510
@@ -1422,8 +1436,7 @@ Program # 8487                              | Program # 8511
 
 CATEGORY: class names
 
-Mismatched output
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> formal parm: user-defined class Main { // class
 
@@ -1444,7 +1457,6 @@ class Something { }
 
 Your output:
 
-Test31.java::15.7(warning): unused class Something
 
 Solution output:
 
@@ -1471,7 +1483,7 @@ Program # 8689                              | Program # 8709
     MethodDeclVoid[abc] # 8686 @ not set    |     MethodDeclVoid[abc] # 8706 @ not set
      *====list====*                         |      *====list====*
       ParamDecl[x] # 8682                   |       ParamDecl[x] # 8702
-       IDType[Something] # 8681 @ 8688      |        IDType[Something] # 8701 @ not set
+       IDType[Something] # 8681 @ 8688      |        IDType[Something] # 8701 @ 8708
      *====list====*                         |      *====list====*
       Assign # 8685                         |       Assign # 8705
        IDExp[x] # 8683 @ 8682               |        IDExp[x] # 8703 @ 8702
@@ -1527,7 +1539,7 @@ Program # 8889                            | Program # 8911
      *====list====*                       |      *====list====*
       LocalDeclStmt # 8883                |       LocalDeclStmt # 8905
        LocalVarDecl[x] # 8882             |        LocalVarDecl[x] # 8904
-        IDType[Object] # 8878 @ 8995      |         IDType[Object] # 8900 @ not set
+        IDType[Object] # 8878 @ 8995      |         IDType[Object] # 8900 @ 8916
         NewArray # 8881                   |         NewArray # 8903
          IDType[Main] # 8879 @ 8877       |          IDType[Main] # 8901 @ 8899
          IntLit[333] # 8880               |          IntLit[333] # 8902
@@ -1585,7 +1597,7 @@ Program # 9088                            | Program # 9107
     MethodDeclVoid[abc] # 9086 @ not set  |     MethodDeclVoid[abc] # 9105 @ not set
      *====list====*                       |      *====list====*
       ParamDecl[x] # 9082                 |       ParamDecl[x] # 9101
-       IDType[Lib] # 9081 @ 9193          |        IDType[Lib] # 9100 @ not set
+       IDType[Lib] # 9081 @ 9193          |        IDType[Lib] # 9100 @ 9114
      *====list====*                       |      *====list====*
       Assign # 9085                       |       Assign # 9104
        IDExp[x] # 9083 @ 9082             |        IDExp[x] # 9102 @ 9101
@@ -1641,7 +1653,7 @@ Program # 9290                            | Program # 9315
        LocalVarDecl[x] # 9283             |        LocalVarDecl[x] # 9308
         ArrayType # 9278                  |         ArrayType # 9303
          ArrayType # 9277                 |          ArrayType # 9302
-          IDType[String] # 9276 @ 9400    |           IDType[String] # 9301 @ not set
+          IDType[String] # 9276 @ 9400    |           IDType[String] # 9301 @ 9321
         NewArray # 9282                   |         NewArray # 9307
          ArrayType # 9281                 |          ArrayType # 9306
           IDType[String] # 9279 @ 9400    |           IDType[String] # 9304 @ 9321
@@ -1839,7 +1851,7 @@ Program # 10057                             | Program # 10079
      *====list====*                         |      *====list====*
       LocalDeclStmt # 10051                 |       LocalDeclStmt # 10073
        LocalVarDecl[x] # 10050              |        LocalVarDecl[x] # 10072
-        IDType[Object] # 10046 @ 10163      |         IDType[Object] # 10068 @ not set
+        IDType[Object] # 10046 @ 10163      |         IDType[Object] # 10068 @ 10084
         NewArray # 10049                    |         NewArray # 10071
          IDType[String] # 10047 @ 10164     |          IDType[String] # 10069 @ 10085
          IntLit[333] # 10048                |          IntLit[333] # 10070
@@ -1931,7 +1943,7 @@ Program # 10437                             | Program # 10457
      *====list====*                         |      *====list====*
       LocalDeclStmt # 10431                 |       LocalDeclStmt # 10451
        LocalVarDecl[x] # 10430              |        LocalVarDecl[x] # 10450
-        IDType[Lib] # 10428 @ 10543         |         IDType[Lib] # 10448 @ not set
+        IDType[Lib] # 10428 @ 10543         |         IDType[Lib] # 10448 @ 10464
         Null # 10429                        |         Null # 10449
       Assign # 10434                        |       Assign # 10454
        IDExp[x] # 10432 @ 10430             |        IDExp[x] # 10452 @ 10450
@@ -1985,7 +1997,7 @@ Program # 10638                            | Program # 10661
      *====list====*                        |      *====list====*
       LocalDeclStmt # 10632                |       LocalDeclStmt # 10655
        LocalVarDecl[x] # 10631             |        LocalVarDecl[x] # 10654
-        IDType[Object] # 10626 @ 10745     |         IDType[Object] # 10649 @ not set
+        IDType[Object] # 10626 @ 10745     |         IDType[Object] # 10649 @ 10666
         NewArray # 10630                   |         NewArray # 10653
          ArrayType # 10629                 |          ArrayType # 10652
           IDType[Object] # 10627 @ 10745   |           IDType[Object] # 10650 @ 10666
@@ -2042,7 +2054,7 @@ Program # 10842                             | Program # 10865
      *====list====*                         |      *====list====*
       LocalDeclStmt # 10836                 |       LocalDeclStmt # 10859
        LocalVarDecl[x] # 10835              |        LocalVarDecl[x] # 10858
-        IDType[Object] # 10830 @ 10949      |         IDType[Object] # 10853 @ not set
+        IDType[Object] # 10830 @ 10949      |         IDType[Object] # 10853 @ 10870
         NewArray # 10834                    |         NewArray # 10857
          ArrayType # 10833                  |          ArrayType # 10856
           IDType[Lib] # 10831 @ 10951       |           IDType[Lib] # 10854 @ 10872
@@ -2099,7 +2111,7 @@ Program # 11044                             | Program # 11065
      *====list====*                         |      *====list====*
       LocalDeclStmt # 11038                 |       LocalDeclStmt # 11059
        LocalVarDecl[x] # 11037              |        LocalVarDecl[x] # 11058
-        IDType[Object] # 11034 @ 11149      |         IDType[Object] # 11055 @ not set
+        IDType[Object] # 11034 @ 11149      |         IDType[Object] # 11055 @ 11070
         NewObject # 11036                   |         NewObject # 11057
          IDType[String] # 11035 @ 11150     |          IDType[String] # 11056 @ 11071
       Assign # 11041                        |       Assign # 11062
@@ -2154,7 +2166,7 @@ Program # 11245                             | Program # 11267
      *====list====*                         |      *====list====*
       LocalDeclStmt # 11239                 |       LocalDeclStmt # 11261
        LocalVarDecl[x] # 11238              |        LocalVarDecl[x] # 11260
-        IDType[Object] # 11234 @ 11351      |         IDType[Object] # 11256 @ not set
+        IDType[Object] # 11234 @ 11351      |         IDType[Object] # 11256 @ 11272
         NewArray # 11237                    |         NewArray # 11259
          IDType[Lib] # 11235 @ 11353        |          IDType[Lib] # 11257 @ 11274
          IntLit[333] # 11236                |          IntLit[333] # 11258
@@ -2212,7 +2224,7 @@ Program # 11451                            | Program # 11477
        *====list====*                      |        *====list====*
         LocalDeclStmt # 11439              |         LocalDeclStmt # 11465
          LocalVarDecl[z] # 11438           |          LocalVarDecl[z] # 11464
-          IDType[Object] # 11436 @ 11561   |           IDType[Object] # 11462 @ not set
+          IDType[Object] # 11436 @ 11561   |           IDType[Object] # 11462 @ 11482
           Null # 11437                     |           Null # 11463
         While # 11447                      |         While # 11473
          Not # 11443                       |          Not # 11469
@@ -2277,7 +2289,7 @@ Program # 11661                             | Program # 11687
        *====list====*                       |        *====list====*
         LocalDeclStmt # 11649               |         LocalDeclStmt # 11675
          LocalVarDecl[z] # 11648            |          LocalVarDecl[z] # 11674
-          IDType[String] # 11646 @ 11772    |           IDType[String] # 11672 @ not set
+          IDType[String] # 11646 @ 11772    |           IDType[String] # 11672 @ 11693
           Null # 11647                      |           Null # 11673
         While # 11657                       |         While # 11683
          True # 11654                       |          True # 11680
@@ -2339,7 +2351,7 @@ Program # 11867                            | Program # 11889
      *====list====*                        |      *====list====*
       LocalDeclStmt # 11861                |       LocalDeclStmt # 11883
        LocalVarDecl[x] # 11860             |        LocalVarDecl[x] # 11882
-        IDType[Object] # 11856 @ 11973     |         IDType[Object] # 11878 @ not set
+        IDType[Object] # 11856 @ 11973     |         IDType[Object] # 11878 @ 11894
         NewArray # 11859                   |         NewArray # 11881
          IDType[Object] # 11857 @ 11973    |          IDType[Object] # 11879 @ 11894
          IntLit[333] # 11858               |          IntLit[333] # 11880
@@ -2446,7 +2458,7 @@ Program # 12262                            | Program # 12283
      *====list====*                        |      *====list====*
       LocalDeclStmt # 12256                |       LocalDeclStmt # 12277
        LocalVarDecl[x] # 12255             |        LocalVarDecl[x] # 12276
-        IDType[Object] # 12252 @ 12367     |         IDType[Object] # 12273 @ not set
+        IDType[Object] # 12252 @ 12367     |         IDType[Object] # 12273 @ 12288
         NewObject # 12254                  |         NewObject # 12275
          IDType[Object] # 12253 @ 12367    |          IDType[Object] # 12274 @ 12288
       Assign # 12259                       |       Assign # 12280
@@ -2556,7 +2568,7 @@ Program # 12650                            | Program # 12669
     MethodDeclVoid[abc] # 12648 @ not set  |     MethodDeclVoid[abc] # 12667 @ not set
      *====list====*                        |      *====list====*
       ParamDecl[x] # 12644                 |       ParamDecl[x] # 12663
-       IDType[Object] # 12643 @ 12753      |        IDType[Object] # 12662 @ not set
+       IDType[Object] # 12643 @ 12753      |        IDType[Object] # 12662 @ 12674
      *====list====*                        |      *====list====*
       Assign # 12647                       |       Assign # 12666
        IDExp[x] # 12645 @ 12644            |        IDExp[x] # 12664 @ 12663
@@ -2610,7 +2622,7 @@ Program # 12847                             | Program # 12867
      *====list====*                         |      *====list====*
       LocalDeclStmt # 12841                 |       LocalDeclStmt # 12861
        LocalVarDecl[x] # 12840              |        LocalVarDecl[x] # 12860
-        IDType[String] # 12838 @ 12952      |         IDType[String] # 12858 @ not set
+        IDType[String] # 12838 @ 12952      |         IDType[String] # 12858 @ 12873
         Null # 12839                        |         Null # 12859
       Assign # 12844                        |       Assign # 12864
        IDExp[x] # 12842 @ 12840             |        IDExp[x] # 12862 @ 12860
@@ -2717,7 +2729,7 @@ Program # 13235                            | Program # 13255
      *====list====*                        |      *====list====*
       LocalDeclStmt # 13229                |       LocalDeclStmt # 13249
        LocalVarDecl[x] # 13228             |        LocalVarDecl[x] # 13248
-        IDType[Object] # 13226 @ 13339     |         IDType[Object] # 13246 @ not set
+        IDType[Object] # 13226 @ 13339     |         IDType[Object] # 13246 @ 13260
         Null # 13227                       |         Null # 13247
       Assign # 13232                       |       Assign # 13252
        IDExp[x] # 13230 @ 13228            |        IDExp[x] # 13250 @ 13248
@@ -2773,7 +2785,7 @@ Program # 13439                             | Program # 13465
        *====list====*                       |        *====list====*
         LocalDeclStmt # 13427               |         LocalDeclStmt # 13453
          LocalVarDecl[z] # 13426            |          LocalVarDecl[z] # 13452
-          IDType[Lib] # 13424 @ 13551       |           IDType[Lib] # 13450 @ not set
+          IDType[Lib] # 13424 @ 13551       |           IDType[Lib] # 13450 @ 13472
           Null # 13425                      |           Null # 13451
         While # 13435                       |         While # 13461
          Not # 13431                        |          Not # 13457
@@ -2941,7 +2953,7 @@ Program # 14026                             | Program # 14045
     MethodDeclVoid[abc] # 14024 @ not set   |     MethodDeclVoid[abc] # 14043 @ not set
      *====list====*                         |      *====list====*
       ParamDecl[x] # 14020                  |       ParamDecl[x] # 14039
-       IDType[String] # 14019 @ 14130       |        IDType[String] # 14038 @ not set
+       IDType[String] # 14019 @ 14130       |        IDType[String] # 14038 @ 14051
      *====list====*                         |      *====list====*
       Assign # 14023                        |       Assign # 14042
        IDExp[x] # 14021 @ 14020             |        IDExp[x] # 14040 @ 14039
@@ -3000,17 +3012,17 @@ Program # 14242                            | Program # 14281
      *====list====*                        |      *====list====*
       LocalDeclStmt # 14219                |       LocalDeclStmt # 14258
        LocalVarDecl[k] # 14218             |        LocalVarDecl[k] # 14257
-        IDType[Object] # 14216 @ 14365     |         IDType[Object] # 14255 @ not set
+        IDType[Object] # 14216 @ 14365     |         IDType[Object] # 14255 @ 14286
         Null # 14217                       |         Null # 14256
       LocalDeclStmt # 14225                |       LocalDeclStmt # 14264
        LocalVarDecl[var1] # 14224          |        LocalVarDecl[var1] # 14263
-        IDType[Test76] # 14220 @ 14241     |         IDType[Test76] # 14259 @ not set
+        IDType[Test76] # 14220 @ 14241     |         IDType[Test76] # 14259 @ 14280
         Cast # 14223                       |         Cast # 14262
          IDType[Test76] # 14221 @ 14241    |          IDType[Test76] # 14260 @ 14280
          IDExp[n] # 14222 @ 14215          |          IDExp[n] # 14261 @ 14254
       LocalDeclStmt # 14233                |       LocalDeclStmt # 14272
        LocalVarDecl[var2] # 14232          |        LocalVarDecl[var2] # 14271
-        IDType[Test76] # 14226 @ 14241     |         IDType[Test76] # 14265 @ not set
+        IDType[Test76] # 14226 @ 14241     |         IDType[Test76] # 14265 @ 14280
         Cast # 14231                       |         Cast # 14270
          IDType[Test76] # 14227 @ 14241    |          IDType[Test76] # 14266 @ 14280
          Cast # 14230                      |          Cast # 14269
@@ -3076,7 +3088,7 @@ Program # 14475                            | Program # 14511
      *====list====*                        |      *====list====*
       LocalDeclStmt # 14455                |       LocalDeclStmt # 14491
        LocalVarDecl[z] # 14454             |        LocalVarDecl[z] # 14490
-        IDType[Object] # 14452 @ 14595     |         IDType[Object] # 14488 @ not set
+        IDType[Object] # 14452 @ 14595     |         IDType[Object] # 14488 @ 14516
         Null # 14453                       |         Null # 14489
       If # 14472                           |       If # 14508
        And # 14462                         |        And # 14498
@@ -3090,106 +3102,13 @@ Program # 14475                            | Program # 14511
         *====list====*                     |         *====list====*
          LocalDeclStmt # 14466             |          LocalDeclStmt # 14502
           LocalVarDecl[k] # 14465          |           LocalVarDecl[k] # 14501
-           IDType[Object] # 14463 @ 14595  |            IDType[Object] # 14499 @ not set
+           IDType[Object] # 14463 @ 14595  |            IDType[Object] # 14499 @ 14516
            Null # 14464                    |            Null # 14500
          Assign # 14469                    |          Assign # 14505
           IDExp[k] # 14467 @ 14465         |           IDExp[k] # 14503 @ 14501
           Null # 14468                     |           Null # 14504
        Block # 14471                       |        Block # 14507
         *====list====*                     |         *====list====*
-
-================================================================================
-
-CATEGORY: uninitialized variables
-
-Mismatched output
-
-Origonal program:
-//==> self-initialization error
-
-class Main { // class Check8 {
-public    void main() {
-	new Barley().exec();
-    }
-}
-class Barley {
-    int dhs;
-    boolean c;
-    public void exec() {
-	int zzy = 4;
-        int zzx = 5+zzy;
-        int dhs = zzy*(1+dhs);
-	int cc = dhs+1;
-	boolean c = cc == zzx || !c;
-    }
-}
-
-
-Your output:
-
-Error41.java::14.26: Reference to uninitialized variable dhs
-Error41.java::16.10(warning): unused variable c
-Error41.java::16.28: Reference to uninitialized variable c
-
-Solution output:
-Error41.java::14.26: Reference to uninitialized variable dhs
-Error41.java::16.28: Reference to uninitialized variable c
-
-TREES:
-
-solution:                                   | Yours:
-Program # 14719                            | Program # 14769
- *====list====*                            |  *====list====*
-  ClassDecl[Main,Object] # 14679 @ 14853   |   ClassDecl[Main,Object] # 14729 @ 14774
-   *====list====*                          |    *====list====*
-    MethodDeclVoid[main] # 14678 @ not set |     MethodDeclVoid[main] # 14728 @ not set
-     *====list====*                        |      *====list====*
-     *====list====*                        |      *====list====*
-      CallStmt # 14677                     |       CallStmt # 14727
-       Call[exec] # 14676 @ not set        |        Call[exec] # 14726 @ not set
-        *====list====*                     |         *====list====*
-        NewObject # 14675                  |         NewObject # 14725
-         IDType[Barley] # 14674 @ 14718    |          IDType[Barley] # 14724 @ 14768
-  ClassDecl[Barley,Object] # 14718 @ 14853 |   ClassDecl[Barley,Object] # 14768 @ 14774
-   *====list====*                          |    *====list====*
-    FieldDecl[dhs] # 14681                 |     FieldDecl[dhs] # 14731
-    FieldDecl[c] # 14683                   |     FieldDecl[c] # 14733
-    MethodDeclVoid[exec] # 14717 @ not set |     MethodDeclVoid[exec] # 14767 @ not set
-     *====list====*                        |      *====list====*
-     *====list====*                        |      *====list====*
-      LocalDeclStmt # 14687                |       LocalDeclStmt # 14737
-       LocalVarDecl[zzy] # 14686           |        LocalVarDecl[zzy] # 14736
-        IntType # 14684                    |         IntType # 14734
-        IntLit[4] # 14685                  |         IntLit[4] # 14735
-      LocalDeclStmt # 14693                |       LocalDeclStmt # 14743
-       LocalVarDecl[zzx] # 14692           |        LocalVarDecl[zzx] # 14742
-        IntType # 14688                    |         IntType # 14738
-        Plus # 14691                       |         Plus # 14741
-         IntLit[5] # 14689                 |          IntLit[5] # 14739
-         IDExp[zzy] # 14690 @ 14686        |          IDExp[zzy] # 14740 @ 14736
-      LocalDeclStmt # 14701                |       LocalDeclStmt # 14751
-       LocalVarDecl[dhs] # 14700           |        LocalVarDecl[dhs] # 14750
-        IntType # 14694                    |         IntType # 14744
-        Times # 14699                      |         Times # 14749
-         IDExp[zzy] # 14695 @ 14686        |          IDExp[zzy] # 14745 @ 14736
-         Plus # 14698                      |          Plus # 14748
-          IntLit[1] # 14696                |           IntLit[1] # 14746
-          IDExp[dhs] # 14697 @ 14700       |           IDExp[dhs] # 14747 @ 14750
-      LocalDeclStmt # 14707                |       LocalDeclStmt # 14757
-       LocalVarDecl[cc] # 14706            |        LocalVarDecl[cc] # 14756
-        IntType # 14702                    |         IntType # 14752
-        Plus # 14705                       |         Plus # 14755
-         IDExp[dhs] # 14703 @ 14700        |          IDExp[dhs] # 14753 @ 14750
-         IntLit[1] # 14704                 |          IntLit[1] # 14754
-      LocalDeclStmt # 14716                |       LocalDeclStmt # 14766
-       LocalVarDecl[c] # 14715             |        LocalVarDecl[c] # 14765
-        BooleanType # 14708                |         BooleanType # 14758
-        Or # 14714                         |         Or # 14764
-         Equals # 14711                    |          Equals # 14761
-          IDExp[cc] # 14709 @ 14706        |           IDExp[cc] # 14759 @ 14756
-          IDExp[zzx] # 14710 @ 14692       |           IDExp[zzx] # 14760 @ 14742
-         Not # 14713                       |          Not # 14763
-          IDExp[c] # 14712 @ 14715         |           IDExp[c] # 14762 @ 14765
 
 ================================================================================
 
@@ -3314,8 +3233,7 @@ Program # 15522                             | Program # 15547
 
 CATEGORY: fields
 
-Mismatched output
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> inst var ref: super-superclass Main { // class, return expr.
 class Main { // class Test60 {
@@ -3346,10 +3264,6 @@ class Test60b extends Test60e {
 
 Your output:
 
-Test60.java::14.7(warning): unused class Test60c
-Test60.java::17.7(warning): unused class Test60d
-Test60.java::19.7(warning): unused class Test60e
-Test60.java::21.7(warning): unused class Test60b
 
 Solution output:
 
@@ -3365,7 +3279,7 @@ Program # 15932                                | Program # 15963
      *====list====*                            |      *====list====*
       LocalDeclStmt # 15909                    |       LocalDeclStmt # 15940
        LocalVarDecl[hhhhh] # 15908             |        LocalVarDecl[hhhhh] # 15939
-        IDType[Test60b] # 15906 @ 15931        |         IDType[Test60b] # 15937 @ not set
+        IDType[Test60b] # 15906 @ 15931        |         IDType[Test60b] # 15937 @ 15962
         Null # 15907                           |         Null # 15938
       Assign # 15912                           |       Assign # 15943
        IDExp[hhhhh] # 15910 @ 15908            |        IDExp[hhhhh] # 15941 @ 15939
@@ -3469,8 +3383,7 @@ Program # 16151                             | Program # 16181
 
 CATEGORY: fields
 
-Mismatched output
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> inst var ref: super-superclass Main { // class, in arithmetic expr.
 class Main { // class Test62 {
@@ -3500,9 +3413,6 @@ class Test62b extends Test62e {
 
 Your output:
 
-Test62.java::12.7(warning): unused class Test62c
-Test62.java::15.7(warning): unused class Test62d
-Test62.java::17.7(warning): unused class Test62e
 
 Solution output:
 
@@ -3675,8 +3585,7 @@ Program # 16792                                | Program # 16815
 
 CATEGORY: fields
 
-Mismatched output
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> inst var ref: super-superclass Main { // class, array index
 class Main { // class Test65 {
@@ -3707,10 +3616,6 @@ class Test65b extends Test65e {
 
 Your output:
 
-Test65.java::7.7(warning): unused class Test65a
-Test65.java::11.7(warning): unused class Test65c
-Test65.java::14.7(warning): unused class Test65d
-Test65.java::16.7(warning): unused class Test65e
 
 Solution output:
 
@@ -3758,7 +3663,7 @@ Program # 17010                              | Program # 17047
        IntLit[12] # 16999                    |        IntLit[12] # 17036
       LocalDeclStmt # 17004                  |       LocalDeclStmt # 17041
        LocalVarDecl[xxx] # 17003             |        LocalVarDecl[xxx] # 17040
-        IDType[Test65b] # 17001 @ 17009      |         IDType[Test65b] # 17038 @ not set
+        IDType[Test65b] # 17001 @ 17009      |         IDType[Test65b] # 17038 @ 17046
         Null # 17002                         |         Null # 17039
       Assign # 17007                         |       Assign # 17044
        IDExp[xxx] # 17005 @ 17003            |        IDExp[xxx] # 17042 @ 17040
@@ -3768,8 +3673,7 @@ Program # 17010                              | Program # 17047
 
 CATEGORY: fields
 
-Mismatched output
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> inst var ref: super-superclass Main { // class, assignment
 class Main { // class Test61 {
@@ -3799,10 +3703,6 @@ class Test61b extends Test61e {
 
 Your output:
 
-Test61.java::13.7(warning): unused class Test61c
-Test61.java::16.7(warning): unused class Test61d
-Test61.java::18.7(warning): unused class Test61e
-Test61.java::20.7(warning): unused class Test61b
 
 Solution output:
 
@@ -3818,7 +3718,7 @@ Program # 17235                              | Program # 17265
      *====list====*                          |      *====list====*
       LocalDeclStmt # 17213                  |       LocalDeclStmt # 17243
        LocalVarDecl[hhhhh] # 17212           |        LocalVarDecl[hhhhh] # 17242
-        IDType[Test61b] # 17210 @ 17234      |         IDType[Test61b] # 17240 @ not set
+        IDType[Test61b] # 17210 @ 17234      |         IDType[Test61b] # 17240 @ 17264
         Null # 17211                         |         Null # 17241
       Assign # 17216                         |       Assign # 17246
        IDExp[hhhhh] # 17214 @ 17212          |        IDExp[hhhhh] # 17244 @ 17242
@@ -3853,8 +3753,7 @@ Program # 17235                              | Program # 17265
 
 CATEGORY: fields
 
-Mismatched output
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> inst var ref: superclass Main { // class, array index
 class Main { // class Test59 {
@@ -3879,7 +3778,6 @@ class Test59b extends Test59a {
 
 Your output:
 
-Test59.java::14.7(warning): unused class Test59b
 
 Solution output:
 
@@ -3895,7 +3793,7 @@ Program # 17663                              | Program # 17697
      *====list====*                          |      *====list====*
       LocalDeclStmt # 17637                  |       LocalDeclStmt # 17671
        LocalVarDecl[hhhhh] # 17636           |        LocalVarDecl[hhhhh] # 17670
-        IDType[Test59b] # 17634 @ 17662      |         IDType[Test59b] # 17668 @ not set
+        IDType[Test59b] # 17634 @ 17662      |         IDType[Test59b] # 17668 @ 17696
         Null # 17635                         |         Null # 17669
       Assign # 17640                         |       Assign # 17674
        IDExp[hhhhh] # 17638 @ 17636          |        IDExp[hhhhh] # 17672 @ 17670
@@ -3981,8 +3879,7 @@ Program # 17873                             | Program # 17891
 
 CATEGORY: fields
 
-Mismatched output
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> inst var ref: superclass Main { // class, actual parameter
 class Main { // class Test58 {
@@ -4009,7 +3906,6 @@ class Test58a {
 
 Your output:
 
-Test58.java::9.7(warning): unused class Test58b
 
 Solution output:
 
@@ -4025,7 +3921,7 @@ Program # 18089                              | Program # 18129
      *====list====*                          |      *====list====*
       LocalDeclStmt # 18057                  |       LocalDeclStmt # 18097
        LocalVarDecl[hhhhhhh] # 18056         |        LocalVarDecl[hhhhhhh] # 18096
-        IDType[Test58b] # 18054 @ 18084      |         IDType[Test58b] # 18094 @ not set
+        IDType[Test58b] # 18054 @ 18084      |         IDType[Test58b] # 18094 @ 18124
         Null # 18055                         |         Null # 18095
       Block # 18058                          |       Block # 18098
        *====list====*                        |        *====list====*
@@ -4071,8 +3967,7 @@ Program # 18089                              | Program # 18129
 
 CATEGORY: fields
 
-Mismatched output
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> inst var ref: super-superclass Main { // class, actual parameter
 class Main { // class Test64 {
@@ -4104,9 +3999,6 @@ class Test64a {
 
 Your output:
 
-Test64.java::15.7(warning): unused class Test64c
-Test64.java::18.7(warning): unused class Test64e
-Test64.java::20.7(warning): unused class Test64d
 
 Solution output:
 
@@ -4221,8 +4113,7 @@ Program # 18932                             | Program # 18953
 
 CATEGORY: fields
 
-Mismatched output
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> inst var ref: super-superclass Main { // class, inside 'if'
 class Main { // class Test63 {
@@ -4251,10 +4142,6 @@ class Test63b extends Test63e {
 
 Your output:
 
-Test63.java::7.7(warning): unused class Test63a
-Test63.java::11.7(warning): unused class Test63c
-Test63.java::14.7(warning): unused class Test63d
-Test63.java::16.7(warning): unused class Test63e
 
 Solution output:
 
@@ -4304,8 +4191,7 @@ Program # 19139                              | Program # 19167
 
 CATEGORY: fields
 
-Mismatched output
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> forward reference to instance variable
 
@@ -4328,7 +4214,6 @@ class Test74b {
 
 Your output:
 
-Test74.java::13.7(warning): unused class Test74b
 
 Solution output:
 
@@ -4415,8 +4300,7 @@ Program # 19540                               | Program # 19557
 
 CATEGORY: fields
 
-Mismatched output
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> inst var ref: superclass Main { // class, in arithmetic expr.
 class Main { // class Test56 {
@@ -4441,7 +4325,6 @@ class Test56b extends Test56a {
 
 Your output:
 
-Test56.java::14.7(warning): unused class Test56b
 
 Solution output:
 
@@ -4457,7 +4340,7 @@ Program # 19748                              | Program # 19781
      *====list====*                          |      *====list====*
       LocalDeclStmt # 19723                  |       LocalDeclStmt # 19756
        LocalVarDecl[hhhhhh] # 19722          |        LocalVarDecl[hhhhhh] # 19755
-        IDType[Test56b] # 19720 @ 19747      |         IDType[Test56b] # 19753 @ not set
+        IDType[Test56b] # 19720 @ 19747      |         IDType[Test56b] # 19753 @ 19780
         Null # 19721                         |         Null # 19754
       Assign # 19726                         |       Assign # 19759
        IDExp[hhhhhh] # 19724 @ 19722         |        IDExp[hhhhhh] # 19757 @ 19755
@@ -4492,8 +4375,7 @@ Program # 19748                              | Program # 19781
 
 CATEGORY: fields
 
-Mismatched output
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> inst var ref: superclass Main { // class, inside 'if'
 class Main { // class Test57 {
@@ -4517,7 +4399,6 @@ class Test57b extends Test57a {
 
 Your output:
 
-Test57.java::14.7(warning): unused class Test57b
 
 Solution output:
 
@@ -4533,7 +4414,7 @@ Program # 19969                              | Program # 19999
      *====list====*                          |      *====list====*
       LocalDeclStmt # 19947                  |       LocalDeclStmt # 19977
        LocalVarDecl[dddd] # 19946            |        LocalVarDecl[dddd] # 19976
-        IDType[Test57b] # 19944 @ 19968      |         IDType[Test57b] # 19974 @ not set
+        IDType[Test57b] # 19944 @ 19968      |         IDType[Test57b] # 19974 @ 19998
         Null # 19945                         |         Null # 19975
       Assign # 19950                         |       Assign # 19980
        IDExp[dddd] # 19948 @ 19946           |        IDExp[dddd] # 19978 @ 19976
@@ -4567,8 +4448,7 @@ Program # 19969                              | Program # 19999
 
 CATEGORY: fields
 
-Mismatched output
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> instance variable of same name in class and superclass
 
@@ -4601,8 +4481,6 @@ class Check6c extends Check6b {
 
 Your output:
 
-Check06.java::14.7(warning): unused class Check6b
-Check06.java::20.7(warning): unused class Check6c
 
 Solution output:
 
@@ -4650,7 +4528,7 @@ Program # 20196                              | Program # 20235
        True # 20185                          |        True # 20224
       LocalDeclStmt # 20190                  |       LocalDeclStmt # 20229
        LocalVarDecl[xxxx] # 20189            |        LocalVarDecl[xxxx] # 20228
-        IDType[Check6c] # 20187 @ 20195      |         IDType[Check6c] # 20226 @ not set
+        IDType[Check6c] # 20187 @ 20195      |         IDType[Check6c] # 20226 @ 20234
         Null # 20188                         |         Null # 20227
       Assign # 20193                         |       Assign # 20232
        IDExp[xxxx] # 20191 @ 20189           |        IDExp[xxxx] # 20230 @ 20228
@@ -4688,8 +4566,14 @@ class Main
 
 Your output:
 
+Test01.java::12.21(warning): unused variable y
+Test01.java::15.21(warning): unused variable y
+Test01.java::18.21(warning): unused variable y
 
 Solution output:
+Test01.java::12.21(warning): unused variable y
+Test01.java::15.21(warning): unused variable y
+Test01.java::18.21(warning): unused variable y
 
 TREES:
 
@@ -4792,7 +4676,7 @@ Program # 21266                              | Program # 21291
      IntType # 21255                         |      IntType # 21280
      *====list====*                          |      *====list====*
       ParamDecl[myParameter] # 21257         |       ParamDecl[myParameter] # 21282
-       IDType[Lib] # 21256 @ 21377           |        IDType[Lib] # 21281 @ not set
+       IDType[Lib] # 21256 @ 21377           |        IDType[Lib] # 21281 @ 21298
      *====list====*                          |      *====list====*
       LocalDeclStmt # 21261                  |       LocalDeclStmt # 21286
        LocalVarDecl[myLocalVar] # 21260      |        LocalVarDecl[myLocalVar] # 21285
@@ -4801,165 +4685,6 @@ Program # 21266                              | Program # 21291
      IntLit[123] # 21262                     |      IntLit[123] # 21287
   ClassDecl[Test75b,Object] # 21265 @ 21375  |   ClassDecl[Test75b,Object] # 21290 @ 21296
    *====list====*                            |    *====list====*
-
-================================================================================
-
-CATEGORY: uninitialized variables
-
-Mismatched output
-
-Origonal program:
-//==> multi-class Main { // class circular inheritance
-class Main {
-    public void main() {
-	new Class2a().exec();
-    }
-}
-class Class2a extends Class2b {
-    public void exec() {
-    }
-}
-class Class2b extends Class2c {
-}
-class Class2c extends Class2d {
-}
-class Class2d extends Class2e {
-}
-class Class2e extends Class2f {
-}
-class Class2f extends Class2g {
-}
-class Class2g extends Class2h {
-}
-class Class2h extends Class2i {
-}
-class Class2i extends Class2j {
-}
-class Class2j extends Class2k {
-}
-class Class2k extends Class2l {
-}
-class Class2l extends Class2a {
-}
-
-
-Your output:
-
-Error02.java::31.7: inheritance cycle detected: Class2l
-
-Solution output:
-Error02.java::7.7: inheritance cycle detected: Class2a
-Error02.java::11.7: inheritance cycle detected: Class2b
-Error02.java::13.7: inheritance cycle detected: Class2c
-Error02.java::15.7: inheritance cycle detected: Class2d
-Error02.java::17.7: inheritance cycle detected: Class2e
-Error02.java::19.7: inheritance cycle detected: Class2f
-Error02.java::21.7: inheritance cycle detected: Class2g
-Error02.java::23.7: inheritance cycle detected: Class2h
-Error02.java::25.7: inheritance cycle detected: Class2i
-Error02.java::27.7: inheritance cycle detected: Class2j
-Error02.java::29.7: inheritance cycle detected: Class2k
-Error02.java::31.7: inheritance cycle detected: Class2l
-
-TREES:
-
-solution:                                     | Yours:
-Program # 21473                              | Program # 21497
- *====list====*                              |  *====list====*
-  ClassDecl[Main,Object] # 21459 @ 21581     |   ClassDecl[Main,Object] # 21483 @ 21502
-   *====list====*                            |    *====list====*
-    MethodDeclVoid[main] # 21458 @ not set   |     MethodDeclVoid[main] # 21482 @ not set
-     *====list====*                          |      *====list====*
-     *====list====*                          |      *====list====*
-      CallStmt # 21457                       |       CallStmt # 21481
-       Call[exec] # 21456 @ not set          |        Call[exec] # 21480 @ not set
-        *====list====*                       |         *====list====*
-        NewObject # 21455                    |         NewObject # 21479
-         IDType[Class2a] # 21454 @ not set   |          IDType[Class2a] # 21478 @ not set
-  ClassDecl[Class2a,Class2b] # 21461 @ 21462 |   ClassDecl[Class2a,Class2b] # 21485 @ 21486
-   *====list====*                            |    *====list====*
-    MethodDeclVoid[exec] # 21460 @ not set   |     MethodDeclVoid[exec] # 21484 @ not set
-     *====list====*                          |      *====list====*
-     *====list====*                          |      *====list====*
-  ClassDecl[Class2b,Class2c] # 21462 @ 21463 |   ClassDecl[Class2b,Class2c] # 21486 @ 21487
-   *====list====*                            |    *====list====*
-  ClassDecl[Class2c,Class2d] # 21463 @ 21464 |   ClassDecl[Class2c,Class2d] # 21487 @ 21488
-   *====list====*                            |    *====list====*
-  ClassDecl[Class2d,Class2e] # 21464 @ 21465 |   ClassDecl[Class2d,Class2e] # 21488 @ 21489
-   *====list====*                            |    *====list====*
-  ClassDecl[Class2e,Class2f] # 21465 @ 21466 |   ClassDecl[Class2e,Class2f] # 21489 @ 21490
-   *====list====*                            |    *====list====*
-  ClassDecl[Class2f,Class2g] # 21466 @ 21467 |   ClassDecl[Class2f,Class2g] # 21490 @ 21491
-   *====list====*                            |    *====list====*
-  ClassDecl[Class2g,Class2h] # 21467 @ 21468 |   ClassDecl[Class2g,Class2h] # 21491 @ 21492
-   *====list====*                            |    *====list====*
-  ClassDecl[Class2h,Class2i] # 21468 @ 21469 |   ClassDecl[Class2h,Class2i] # 21492 @ 21493
-   *====list====*                            |    *====list====*
-  ClassDecl[Class2i,Class2j] # 21469 @ 21470 |   ClassDecl[Class2i,Class2j] # 21493 @ 21494
-   *====list====*                            |    *====list====*
-  ClassDecl[Class2j,Class2k] # 21470 @ 21471 |   ClassDecl[Class2j,Class2k] # 21494 @ 21495
-   *====list====*                            |    *====list====*
-  ClassDecl[Class2k,Class2l] # 21471 @ 21472 |   ClassDecl[Class2k,Class2l] # 21495 @ 21496
-   *====list====*                            |    *====list====*
-  ClassDecl[Class2l,Class2a] # 21472 @ 21461 |   ClassDecl[Class2l,Class2a] # 21496 @ 21485
-   *====list====*                            |    *====list====*
-
-================================================================================
-
-CATEGORY: uninitialized variables
-
-Mismatched output
-
-Origonal program:
-//==> two-class Main { // class circular inheritance
-class Main {
-    public void main() {
-	new Class1a().exec();
-    }
-}
-class Class1a extends Class1b {
-    public void exec() {
-    }
-}
-class Class1b extends Class1a {
-    public void exec() {
-    }
-}
-
-
-Your output:
-
-Error01.java::11.7: inheritance cycle detected: Class1b
-
-Solution output:
-Error01.java::7.7: inheritance cycle detected: Class1a
-Error01.java::11.7: inheritance cycle detected: Class1b
-
-TREES:
-
-solution:                                     | Yours:
-Program # 21854                              | Program # 21869
- *====list====*                              |  *====list====*
-  ClassDecl[Main,Object] # 21849 @ 21953     |   ClassDecl[Main,Object] # 21864 @ 21874
-   *====list====*                            |    *====list====*
-    MethodDeclVoid[main] # 21848 @ not set   |     MethodDeclVoid[main] # 21863 @ not set
-     *====list====*                          |      *====list====*
-     *====list====*                          |      *====list====*
-      CallStmt # 21847                       |       CallStmt # 21862
-       Call[exec] # 21846 @ not set          |        Call[exec] # 21861 @ not set
-        *====list====*                       |         *====list====*
-        NewObject # 21845                    |         NewObject # 21860
-         IDType[Class1a] # 21844 @ not set   |          IDType[Class1a] # 21859 @ not set
-  ClassDecl[Class1a,Class1b] # 21851 @ 21853 |   ClassDecl[Class1a,Class1b] # 21866 @ 21868
-   *====list====*                            |    *====list====*
-    MethodDeclVoid[exec] # 21850 @ not set   |     MethodDeclVoid[exec] # 21865 @ not set
-     *====list====*                          |      *====list====*
-     *====list====*                          |      *====list====*
-  ClassDecl[Class1b,Class1a] # 21853 @ 21851 |   ClassDecl[Class1b,Class1a] # 21868 @ 21866
-   *====list====*                            |    *====list====*
-    MethodDeclVoid[exec] # 21852 @ not set   |     MethodDeclVoid[exec] # 21867 @ not set
-     *====list====*                          |      *====list====*
-     *====list====*                          |      *====list====*
 
 ================================================================================
 
@@ -5113,226 +4838,6 @@ Program # 22515                             | Program # 22535
 
 CATEGORY: local variables
 
-Mismatched output
-
-Origonal program:
-//==> var ref: undefined, in arithmetic expr.
-class Main {
-public    void main() {
-	new Error20b().exec2();
-    }
-}
-class Error20a {
-    public void exec() {
-    }
-}
-class Error20b extends Error20a {
-    public void exec2() {
-	int j = abc + 4;
-	j++;
-    }
-}
-
-
-Your output:
-
-Error20.java::7.7(warning): unused class Error20a
-Error20.java::13.10: Undefined variable name abc
-
-Solution output:
-Error20.java::13.10: Undefined variable name abc
-
-TREES:
-
-solution:                                       | Yours:
-Program # 22719                                | Program # 22745
- *====list====*                                |  *====list====*
-  ClassDecl[Main,Object] # 22703 @ 22829       |   ClassDecl[Main,Object] # 22729 @ 22750
-   *====list====*                              |    *====list====*
-    MethodDeclVoid[main] # 22702 @ not set     |     MethodDeclVoid[main] # 22728 @ not set
-     *====list====*                            |      *====list====*
-     *====list====*                            |      *====list====*
-      CallStmt # 22701                         |       CallStmt # 22727
-       Call[exec2] # 22700 @ not set           |        Call[exec2] # 22726 @ not set
-        *====list====*                         |         *====list====*
-        NewObject # 22699                      |         NewObject # 22725
-         IDType[Error20b] # 22698 @ 22718      |          IDType[Error20b] # 22724 @ 22744
-  ClassDecl[Error20a,Object] # 22705 @ 22829   |   ClassDecl[Error20a,Object] # 22731 @ 22750
-   *====list====*                              |    *====list====*
-    MethodDeclVoid[exec] # 22704 @ not set     |     MethodDeclVoid[exec] # 22730 @ not set
-     *====list====*                            |      *====list====*
-     *====list====*                            |      *====list====*
-  ClassDecl[Error20b,Error20a] # 22718 @ 22705 |   ClassDecl[Error20b,Error20a] # 22744 @ 22731
-   *====list====*                              |    *====list====*
-    MethodDeclVoid[exec2] # 22717 @ not set    |     MethodDeclVoid[exec2] # 22743 @ not set
-     *====list====*                            |      *====list====*
-     *====list====*                            |      *====list====*
-      LocalDeclStmt # 22711                    |       LocalDeclStmt # 22737
-       LocalVarDecl[j] # 22710                 |        LocalVarDecl[j] # 22736
-        IntType # 22706                        |         IntType # 22732
-        Plus # 22709                           |         Plus # 22735
-         IDExp[abc] # 22707 @ not set          |          IDExp[abc] # 22733 @ not set
-         IntLit[4] # 22708                     |          IntLit[4] # 22734
-      Assign # 22716                           |       Assign # 22742
-       IDExp[j] # 22712 @ 22710                |        IDExp[j] # 22738 @ 22736
-       Plus # 22715                            |        Plus # 22741
-        IDExp[j] # 22713 @ 22710               |         IDExp[j] # 22739 @ 22736
-        IntLit[1] # 22714                      |         IntLit[1] # 22740
-
-================================================================================
-
-CATEGORY: local variables
-
-Mismatched output
-
-Origonal program:
-//==> var ref: undefined, actual parameter
-class Main {
-public    void main() {
-	new Error22b().exec();
-    }
-}
-class Error22b extends Error22a {
-    public void exec2() {
-	fun(abc, abc);
-    }
-    public void fun(int a, int b) {
-	a++;
-	b++;
-    }
-}
-class Error22a {
-    public void exec() {
-    }
-}
-
-
-Your output:
-
-Error22.java::9.6: Undefined variable name abc
-Error22.java::9.11: Undefined variable name abc
-Error22.java::16.7(warning): unused class Error22a
-
-Solution output:
-Error22.java::9.6: Undefined variable name abc
-Error22.java::9.11: Undefined variable name abc
-
-TREES:
-
-solution:                                       | Yours:
-Program # 22938                                | Program # 22973
- *====list====*                                |  *====list====*
-  ClassDecl[Main,Object] # 22913 @ 23057       |   ClassDecl[Main,Object] # 22948 @ 22978
-   *====list====*                              |    *====list====*
-    MethodDeclVoid[main] # 22912 @ not set     |     MethodDeclVoid[main] # 22947 @ not set
-     *====list====*                            |      *====list====*
-     *====list====*                            |      *====list====*
-      CallStmt # 22911                         |       CallStmt # 22946
-       Call[exec] # 22910 @ not set            |        Call[exec] # 22945 @ not set
-        *====list====*                         |         *====list====*
-        NewObject # 22909                      |         NewObject # 22944
-         IDType[Error22b] # 22908 @ 22935      |          IDType[Error22b] # 22943 @ 22970
-  ClassDecl[Error22b,Error22a] # 22935 @ 22937 |   ClassDecl[Error22b,Error22a] # 22970 @ 22972
-   *====list====*                              |    *====list====*
-    MethodDeclVoid[exec2] # 22919 @ not set    |     MethodDeclVoid[exec2] # 22954 @ not set
-     *====list====*                            |      *====list====*
-     *====list====*                            |      *====list====*
-      CallStmt # 22918                         |       CallStmt # 22953
-       Call[fun] # 22917 @ not set             |        Call[fun] # 22952 @ not set
-        *====list====*                         |         *====list====*
-         IDExp[abc] # 22914 @ not set          |          IDExp[abc] # 22949 @ not set
-         IDExp[abc] # 22915 @ not set          |          IDExp[abc] # 22950 @ not set
-        This # 22916                           |         This # 22951
-    MethodDeclVoid[fun] # 22934 @ not set      |     MethodDeclVoid[fun] # 22969 @ not set
-     *====list====*                            |      *====list====*
-      ParamDecl[a] # 22923                     |       ParamDecl[a] # 22958
-       IntType # 22920                         |        IntType # 22955
-      ParamDecl[b] # 22922                     |       ParamDecl[b] # 22957
-       IntType # 22921                         |        IntType # 22956
-     *====list====*                            |      *====list====*
-      Assign # 22928                           |       Assign # 22963
-       IDExp[a] # 22924 @ 22923                |        IDExp[a] # 22959 @ 22958
-       Plus # 22927                            |        Plus # 22962
-        IDExp[a] # 22925 @ 22923               |         IDExp[a] # 22960 @ 22958
-        IntLit[1] # 22926                      |         IntLit[1] # 22961
-      Assign # 22933                           |       Assign # 22968
-       IDExp[b] # 22929 @ 22922                |        IDExp[b] # 22964 @ 22957
-       Plus # 22932                            |        Plus # 22967
-        IDExp[b] # 22930 @ 22922               |         IDExp[b] # 22965 @ 22957
-        IntLit[1] # 22931                      |         IntLit[1] # 22966
-  ClassDecl[Error22a,Object] # 22937 @ 23057   |   ClassDecl[Error22a,Object] # 22972 @ 22978
-   *====list====*                              |    *====list====*
-    MethodDeclVoid[exec] # 22936 @ not set     |     MethodDeclVoid[exec] # 22971 @ not set
-     *====list====*                            |      *====list====*
-     *====list====*                            |      *====list====*
-
-================================================================================
-
-CATEGORY: local variables
-
-Mismatched output
-
-Origonal program:
-//==> var ref: undefined, return expr.
-class Main { // class Error18 {
-public    void main() {
-	new Error18b().exec2();
-    }
-}
-class Error18a {
-    public int exec() {
-	return 4;
-    }
-}
-class Error18b extends Error18a {
-    public int exec2() {
-	return abc;
-    }
-}
-
-
-Your output:
-
-Error18.java::7.7(warning): unused class Error18a
-Error18.java::14.9: Undefined variable name abc
-
-Solution output:
-Error18.java::14.9: Undefined variable name abc
-
-TREES:
-
-solution:                                       | Yours:
-Program # 23414                                | Program # 23433
- *====list====*                                |  *====list====*
-  ClassDecl[Main,Object] # 23405 @ 23517       |   ClassDecl[Main,Object] # 23424 @ 23438
-   *====list====*                              |    *====list====*
-    MethodDeclVoid[main] # 23404 @ not set     |     MethodDeclVoid[main] # 23423 @ not set
-     *====list====*                            |      *====list====*
-     *====list====*                            |      *====list====*
-      CallStmt # 23403                         |       CallStmt # 23422
-       Call[exec2] # 23402 @ not set           |        Call[exec2] # 23421 @ not set
-        *====list====*                         |         *====list====*
-        NewObject # 23401                      |         NewObject # 23420
-         IDType[Error18b] # 23400 @ 23413      |          IDType[Error18b] # 23419 @ 23432
-  ClassDecl[Error18a,Object] # 23409 @ 23517   |   ClassDecl[Error18a,Object] # 23428 @ 23438
-   *====list====*                              |    *====list====*
-    MethodDeclNonVoid[exec] # 23408 @ not set  |     MethodDeclNonVoid[exec] # 23427 @ not set
-     IntType # 23406                           |      IntType # 23425
-     *====list====*                            |      *====list====*
-     *====list====*                            |      *====list====*
-     IntLit[4] # 23407                         |      IntLit[4] # 23426
-  ClassDecl[Error18b,Error18a] # 23413 @ 23409 |   ClassDecl[Error18b,Error18a] # 23432 @ 23428
-   *====list====*                              |    *====list====*
-    MethodDeclNonVoid[exec2] # 23412 @ not set |     MethodDeclNonVoid[exec2] # 23431 @ not set
-     IntType # 23410                           |      IntType # 23429
-     *====list====*                            |      *====list====*
-     *====list====*                            |      *====list====*
-     IDExp[abc] # 23411 @ not set              |      IDExp[abc] # 23430 @ not set
-
-================================================================================
-
-CATEGORY: local variables
-
 Malformed AST (Probably null pointer)
 Origonal program:
 //==> local var ref: in arithmetic expr.
@@ -5466,8 +4971,7 @@ Program # 23837                             | Program # 23869
 
 CATEGORY: local variables
 
-Program errored when it should have run
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> non-nested variable names
 class Main { // class Check2 {
@@ -5491,78 +4995,72 @@ class Check2a {
 
 Your output:
 
-Check02.java::12.18: duplicate variable name i
-Check02.java::14.15: duplicate variable name i
 
 Solution output:
-
-================================================================================
-
-CATEGORY: local variables
-
-Mismatched output
-
-Origonal program:
-//==> var ref: undefined, assignment
-class Main {
-public    void main() {
-	new Error19b().exec2();
-    }
-}
-class Error19a {
-    public void exec() {
-    }
-}
-class Error19b extends Error19a {
-    public void exec2() {
-	abc = 12;
-    }
-}
-
-
-Your output:
-
-Error19.java::7.7(warning): unused class Error19a
-Error19.java::13.2: Undefined variable name abc
-
-Solution output:
-Error19.java::13.2: Undefined variable name abc
 
 TREES:
 
-solution:                                       | Yours:
-Program # 24293                                | Program # 24311
- *====list====*                                |  *====list====*
-  ClassDecl[Main,Object] # 24285 @ 24395       |   ClassDecl[Main,Object] # 24303 @ 24316
-   *====list====*                              |    *====list====*
-    MethodDeclVoid[main] # 24284 @ not set     |     MethodDeclVoid[main] # 24302 @ not set
-     *====list====*                            |      *====list====*
-     *====list====*                            |      *====list====*
-      CallStmt # 24283                         |       CallStmt # 24301
-       Call[exec2] # 24282 @ not set           |        Call[exec2] # 24300 @ not set
-        *====list====*                         |         *====list====*
-        NewObject # 24281                      |         NewObject # 24299
-         IDType[Error19b] # 24280 @ 24292      |          IDType[Error19b] # 24298 @ 24310
-  ClassDecl[Error19a,Object] # 24287 @ 24395   |   ClassDecl[Error19a,Object] # 24305 @ 24316
-   *====list====*                              |    *====list====*
-    MethodDeclVoid[exec] # 24286 @ not set     |     MethodDeclVoid[exec] # 24304 @ not set
-     *====list====*                            |      *====list====*
-     *====list====*                            |      *====list====*
-  ClassDecl[Error19b,Error19a] # 24292 @ 24287 |   ClassDecl[Error19b,Error19a] # 24310 @ 24305
-   *====list====*                              |    *====list====*
-    MethodDeclVoid[exec2] # 24291 @ not set    |     MethodDeclVoid[exec2] # 24309 @ not set
-     *====list====*                            |      *====list====*
-     *====list====*                            |      *====list====*
-      Assign # 24290                           |       Assign # 24308
-       IDExp[abc] # 24288 @ not set            |        IDExp[abc] # 24306 @ not set
-       IntLit[12] # 24289                      |        IntLit[12] # 24307
+solution:                                    | Yours:
+Program # 24072                             | Program # 24117
+ *====list====*                             |  *====list====*
+  ClassDecl[Main,Object] # 24037 @ 24201    |   ClassDecl[Main,Object] # 24082 @ 24122
+   *====list====*                           |    *====list====*
+    MethodDeclVoid[main] # 24036 @ not set  |     MethodDeclVoid[main] # 24081 @ not set
+     *====list====*                         |      *====list====*
+     *====list====*                         |      *====list====*
+      CallStmt # 24035                      |       CallStmt # 24080
+       Call[exec] # 24034 @ not set         |        Call[exec] # 24079 @ not set
+        *====list====*                      |         *====list====*
+        NewObject # 24033                   |         NewObject # 24078
+         IDType[Check2a] # 24032 @ 24071    |          IDType[Check2a] # 24077 @ 24116
+  ClassDecl[Check2a,Object] # 24071 @ 24201 |   ClassDecl[Check2a,Object] # 24116 @ 24122
+   *====list====*                           |    *====list====*
+    MethodDeclVoid[exec] # 24070 @ not set  |     MethodDeclVoid[exec] # 24115 @ not set
+     *====list====*                         |      *====list====*
+     *====list====*                         |      *====list====*
+      Block # 24045                         |       Block # 24090
+       *====list====*                       |        *====list====*
+        LocalDeclStmt # 24041               |         LocalDeclStmt # 24086
+         LocalVarDecl[i] # 24040            |          LocalVarDecl[i] # 24085
+          IntType # 24038                   |           IntType # 24083
+          IntLit[4] # 24039                 |           IntLit[4] # 24084
+        Assign # 24044                      |         Assign # 24089
+         IDExp[i] # 24042 @ 24040           |          IDExp[i] # 24087 @ 24085
+         IntLit[0] # 24043                  |          IntLit[0] # 24088
+      Block # 24061                         |       Block # 24106
+       *====list====*                       |        *====list====*
+        LocalDeclStmt # 24049               |         LocalDeclStmt # 24094
+         LocalVarDecl[i] # 24048            |          LocalVarDecl[i] # 24093
+          IntType # 24046                   |           IntType # 24091
+          IntLit[5] # 24047                 |           IntLit[5] # 24092
+        While # 24060                       |         While # 24105
+         LessThan # 24052                   |          LessThan # 24097
+          IDExp[i] # 24050 @ 24048          |           IDExp[i] # 24095 @ 24093
+          IntLit[20] # 24051                |           IntLit[20] # 24096
+         Block # 24059                      |          Block # 24104
+          *====list====*                    |           *====list====*
+           Block # 24058                    |            Block # 24103
+            *====list====*                  |             *====list====*
+           Assign # 24057                   |            Assign # 24102
+            IDExp[i] # 24053 @ 24048        |             IDExp[i] # 24098 @ 24093
+            Plus # 24056                    |             Plus # 24101
+             IDExp[i] # 24054 @ 24048       |              IDExp[i] # 24099 @ 24093
+             IntLit[1] # 24055              |              IntLit[1] # 24100
+      Block # 24069                         |       Block # 24114
+       *====list====*                       |        *====list====*
+        LocalDeclStmt # 24065               |         LocalDeclStmt # 24110
+         LocalVarDecl[i] # 24064            |          LocalVarDecl[i] # 24109
+          IntType # 24062                   |           IntType # 24107
+          IntLit[4] # 24063                 |           IntLit[4] # 24108
+        Assign # 24068                      |         Assign # 24113
+         IDExp[i] # 24066 @ 24064           |          IDExp[i] # 24111 @ 24109
+         IntLit[0] # 24067                  |          IntLit[0] # 24112
 
 ================================================================================
 
 CATEGORY: local variables
 
-Program errored when it should have run
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> local var ref: return expr.
 class Main { // class Test67 {
@@ -5580,17 +5078,41 @@ class Test67a {
 
 Your output:
 
-Test67.java::9.6(warning): unused variable abc
-Test67.java::10.9: Undefined variable name abc
 
 Solution output:
+
+TREES:
+
+solution:                                      | Yours:
+Program # 24488                               | Program # 24507
+ *====list====*                               |  *====list====*
+  ClassDecl[Main,Object] # 24479 @ 24591      |   ClassDecl[Main,Object] # 24498 @ 24512
+   *====list====*                             |    *====list====*
+    MethodDeclVoid[main] # 24478 @ not set    |     MethodDeclVoid[main] # 24497 @ not set
+     *====list====*                           |      *====list====*
+     *====list====*                           |      *====list====*
+      CallStmt # 24477                        |       CallStmt # 24496
+       Call[exec] # 24476 @ not set           |        Call[exec] # 24495 @ not set
+        *====list====*                        |         *====list====*
+        NewObject # 24475                     |         NewObject # 24494
+         IDType[Test67a] # 24474 @ 24487      |          IDType[Test67a] # 24493 @ 24506
+  ClassDecl[Test67a,Object] # 24487 @ 24591   |   ClassDecl[Test67a,Object] # 24506 @ 24512
+   *====list====*                             |    *====list====*
+    MethodDeclNonVoid[exec] # 24486 @ not set |     MethodDeclNonVoid[exec] # 24505 @ not set
+     IntType # 24480                          |      IntType # 24499
+     *====list====*                           |      *====list====*
+     *====list====*                           |      *====list====*
+      LocalDeclStmt # 24484                   |       LocalDeclStmt # 24503
+       LocalVarDecl[abc] # 24483              |        LocalVarDecl[abc] # 24502
+        IntType # 24481                       |         IntType # 24500
+        IntLit[0] # 24482                     |         IntLit[0] # 24501
+     IDExp[abc] # 24485 @ 24483               |      IDExp[abc] # 24504 @ 24502
 
 ================================================================================
 
 CATEGORY: local variables
 
-Mismatched output
-
+Malformed AST (Probably null pointer)
 Origonal program:
 //==> variable, class and method, all with same name
 
@@ -5613,7 +5135,6 @@ class Tomato {
 
 Your output:
 
-Check07.java::14.33(warning): unused variable Tomato
 
 Solution output:
 
@@ -5651,144 +5172,9 @@ Program # 26117                                 | Program # 26145
      IDType[Tomato] # 26111 @ 26116             |      IDType[Tomato] # 26139 @ 26144
      *====list====*                             |      *====list====*
       ParamDecl[Tomato] # 26113                 |       ParamDecl[Tomato] # 26141
-       IDType[Tomato] # 26112 @ 26116           |        IDType[Tomato] # 26140 @ not set
+       IDType[Tomato] # 26112 @ 26116           |        IDType[Tomato] # 26140 @ 26144
      *====list====*                             |      *====list====*
-     IDExp[Tomato] # 26114 @ 26113              |      IDExp[Tomato] # 26142 @ 26129
-
-================================================================================
-
-CATEGORY: local variables
-
-Mismatched output
-
-Origonal program:
-//==> var ref: undefined, array index
-class Main {
-public    void main() {
-	new Error23b().exec2();
-    }
-}
-class Error23a {
-    public void exec() {
-    }
-}
-class Error23b extends Error23a {
-    public void exec2() {
-	int[] x = null;
-	x[abc] = 12;
-    }
-}
-
-
-Your output:
-
-Error23.java::7.7(warning): unused class Error23a
-Error23.java::14.4: Undefined variable name abc
-
-Solution output:
-Error23.java::14.4: Undefined variable name abc
-
-TREES:
-
-solution:                                       | Yours:
-Program # 26328                                | Program # 26353
- *====list====*                                |  *====list====*
-  ClassDecl[Main,Object] # 26313 @ 26437       |   ClassDecl[Main,Object] # 26338 @ 26358
-   *====list====*                              |    *====list====*
-    MethodDeclVoid[main] # 26312 @ not set     |     MethodDeclVoid[main] # 26337 @ not set
-     *====list====*                            |      *====list====*
-     *====list====*                            |      *====list====*
-      CallStmt # 26311                         |       CallStmt # 26336
-       Call[exec2] # 26310 @ not set           |        Call[exec2] # 26335 @ not set
-        *====list====*                         |         *====list====*
-        NewObject # 26309                      |         NewObject # 26334
-         IDType[Error23b] # 26308 @ 26327      |          IDType[Error23b] # 26333 @ 26352
-  ClassDecl[Error23a,Object] # 26315 @ 26437   |   ClassDecl[Error23a,Object] # 26340 @ 26358
-   *====list====*                              |    *====list====*
-    MethodDeclVoid[exec] # 26314 @ not set     |     MethodDeclVoid[exec] # 26339 @ not set
-     *====list====*                            |      *====list====*
-     *====list====*                            |      *====list====*
-  ClassDecl[Error23b,Error23a] # 26327 @ 26315 |   ClassDecl[Error23b,Error23a] # 26352 @ 26340
-   *====list====*                              |    *====list====*
-    MethodDeclVoid[exec2] # 26326 @ not set    |     MethodDeclVoid[exec2] # 26351 @ not set
-     *====list====*                            |      *====list====*
-     *====list====*                            |      *====list====*
-      LocalDeclStmt # 26320                    |       LocalDeclStmt # 26345
-       LocalVarDecl[x] # 26319                 |        LocalVarDecl[x] # 26344
-        ArrayType # 26317                      |         ArrayType # 26342
-         IntType # 26316                       |          IntType # 26341
-        Null # 26318                           |         Null # 26343
-      Assign # 26325                           |       Assign # 26350
-       ArrayLookup # 26323                     |        ArrayLookup # 26348
-        IDExp[x] # 26322 @ 26319               |         IDExp[x] # 26347 @ 26344
-        IDExp[abc] # 26321 @ not set           |         IDExp[abc] # 26346 @ not set
-       IntLit[12] # 26324                      |        IntLit[12] # 26349
-
-================================================================================
-
-CATEGORY: local variables
-
-Mismatched output
-
-Origonal program:
-//==> var ref: undefined, inside 'if'
-class Main {
-public    void main() {
-	new Error21b().exec2();
-    }
-}
-class Error21a {
-    public void exec() {
-    }
-}
-class Error21b extends Error21a {
-    public void exec2() {
-	if (5 == abc) {}
-    }
-}
-
-
-Your output:
-
-Error21.java::7.7(warning): unused class Error21a
-Error21.java::13.11: Undefined variable name abc
-
-Solution output:
-Error21.java::13.11: Undefined variable name abc
-
-TREES:
-
-solution:                                       | Yours:
-Program # 26532                                | Program # 26553
- *====list====*                                |  *====list====*
-  ClassDecl[Main,Object] # 26521 @ 26637       |   ClassDecl[Main,Object] # 26542 @ 26558
-   *====list====*                              |    *====list====*
-    MethodDeclVoid[main] # 26520 @ not set     |     MethodDeclVoid[main] # 26541 @ not set
-     *====list====*                            |      *====list====*
-     *====list====*                            |      *====list====*
-      CallStmt # 26519                         |       CallStmt # 26540
-       Call[exec2] # 26518 @ not set           |        Call[exec2] # 26539 @ not set
-        *====list====*                         |         *====list====*
-        NewObject # 26517                      |         NewObject # 26538
-         IDType[Error21b] # 26516 @ 26531      |          IDType[Error21b] # 26537 @ 26552
-  ClassDecl[Error21a,Object] # 26523 @ 26637   |   ClassDecl[Error21a,Object] # 26544 @ 26558
-   *====list====*                              |    *====list====*
-    MethodDeclVoid[exec] # 26522 @ not set     |     MethodDeclVoid[exec] # 26543 @ not set
-     *====list====*                            |      *====list====*
-     *====list====*                            |      *====list====*
-  ClassDecl[Error21b,Error21a] # 26531 @ 26523 |   ClassDecl[Error21b,Error21a] # 26552 @ 26544
-   *====list====*                              |    *====list====*
-    MethodDeclVoid[exec2] # 26530 @ not set    |     MethodDeclVoid[exec2] # 26551 @ not set
-     *====list====*                            |      *====list====*
-     *====list====*                            |      *====list====*
-      If # 26529                               |       If # 26550
-       Equals # 26526                          |        Equals # 26547
-        IntLit[5] # 26524                      |         IntLit[5] # 26545
-        IDExp[abc] # 26525 @ not set           |         IDExp[abc] # 26546 @ not set
-       Block # 26527                           |        Block # 26548
-        *====list====*                         |         *====list====*
-       Block # 26528                           |        Block # 26549
-        *====list====*                         |         *====list====*
+     IDExp[Tomato] # 26114 @ 26113              |      IDExp[Tomato] # 26142 @ 26141
 
 ================================================================================
 
@@ -5873,8 +5259,8 @@ Program # 26766                             | Program # 26821
       CallStmt # 26748                      |       CallStmt # 26803
        Call[fun] # 26747 @ not set          |        Call[fun] # 26802 @ not set
         *====list====*                      |         *====list====*
-         IDExp[abc] # 26744 @ 26723         |          IDExp[abc] # 26799 @ 26791
-         IDExp[abc] # 26745 @ 26723         |          IDExp[abc] # 26800 @ 26791
+         IDExp[abc] # 26744 @ 26723         |          IDExp[abc] # 26799 @ 26778
+         IDExp[abc] # 26745 @ 26723         |          IDExp[abc] # 26800 @ 26778
         This # 26746                        |         This # 26801
     MethodDeclVoid[fun] # 26764 @ not set   |     MethodDeclVoid[fun] # 26819 @ not set
      *====list====*                         |      *====list====*
@@ -5951,41 +5337,6 @@ Program # 27002                             | Program # 27025
         *====list====*                      |         *====list====*
        Block # 26998                        |        Block # 27021
         *====list====*                      |         *====list====*
-
-================================================================================
-
-CATEGORY: local variables
-
-Program run when it should have errored
-
-Origonal program:
-//==> reference to variable that has gone out of scope
-class Main {
-public    void main() {
-	new Error24a().exec();
-    }
-}
-class Error24a {
-    public void exec() {
-	{
-	    int abc = 0;
-        fun(abc,abc);
-	}
-	fun(abc,abc);
-    }
-    public void fun(int i, int j) {
-	i++;
-	j++;
-    }
-}
-
-
-Your output:
-
-
-Solution output:
-Error24.java::13.6: Undefined variable name abc
-Error24.java::13.10: Undefined variable name abc
 
 ================================================================================
 

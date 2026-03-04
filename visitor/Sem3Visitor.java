@@ -25,13 +25,13 @@ public class Sem3Visitor extends Visitor
     HashMap<String, VarDecl> localEnv;
 
     // set of initialized variables
-    HashSet<String> init;
+    HashSet<VarDecl> init;
 
     // set of unused classes
     HashSet<String> unusedClasses;
 
     // set of unused local variables
-    HashSet<String> unusedLocals;
+    HashSet<VarDecl> unusedLocals;
 
     // stack of while/switch
     Stack<BreakTarget> breakTargetStack;
@@ -40,7 +40,10 @@ public class Sem3Visitor extends Visitor
     ErrorMsg errorMsg;
 
     // track variables in current switch chunk
-    Stack<ArrayList<String>> chunkVars;
+    Stack<ArrayList<VarDecl>> chunkVars;
+
+    // stack of lexical local scopes
+    Stack<ArrayList<VarDecl>> localScopes;
 
     // constructor
     public Sem3Visitor(HashMap<String,ClassDecl> env, ErrorMsg e)
@@ -50,10 +53,12 @@ public class Sem3Visitor extends Visitor
         classEnv         = env;
         localEnv         = new HashMap<String,VarDecl>();
         breakTargetStack = new Stack<BreakTarget>();
-        chunkVars        = new Stack<ArrayList<String>>();
+        chunkVars        = new Stack<ArrayList<VarDecl>>();
+        localScopes      = new Stack<ArrayList<VarDecl>>();
 
         unusedClasses    = new HashSet<String>();
-        unusedLocals     = new HashSet<String>();
+        unusedLocals     = new HashSet<VarDecl>();
+        init             = new HashSet<VarDecl>();
 
         for (String className : classEnv.keySet())
         {
@@ -64,19 +69,103 @@ public class Sem3Visitor extends Visitor
         }
     }
 
+    private void pushLocalScope()
+    {
+        localScopes.push(new ArrayList<VarDecl>());
+    }
+
+    private void popLocalScope()
+    {
+        if (localScopes.isEmpty())
+        {
+            return;
+        }
+
+        ArrayList<VarDecl> scope = localScopes.pop();
+        for (VarDecl var : scope)
+        {
+            VarDecl active = localEnv.get(var.name);
+            if (active == var)
+            {
+                localEnv.remove(var.name);
+            }
+            init.remove(var);
+        }
+    }
+
+    private void declareLocal(VarDecl var)
+    {
+        localEnv.put(var.name, var);
+        if (!localScopes.isEmpty())
+        {
+            localScopes.peek().add(var);
+        }
+    }
+
+    private void markClassUsed(String className)
+    {
+        if (unusedClasses != null && className != null)
+        {
+            unusedClasses.remove(className);
+        }
+    }
+
+    private Object analyzeMethod(MethodDecl n, Type rtnType, Exp rtnExp)
+    {
+        HashMap<String,VarDecl> oldLocalEnv = localEnv;
+        HashSet<VarDecl> oldInit = init;
+        HashSet<VarDecl> oldUnusedLocals = unusedLocals;
+        Stack<ArrayList<VarDecl>> oldLocalScopes = localScopes;
+
+        localEnv = new HashMap<String,VarDecl>();
+        init = new HashSet<VarDecl>();
+        unusedLocals = new HashSet<VarDecl>();
+        localScopes = new Stack<ArrayList<VarDecl>>();
+        pushLocalScope();
+
+        if (rtnType != null)
+        {
+            rtnType.accept(this);
+        }
+
+        n.params.accept(this);
+        n.stmts.accept(this);
+
+        if (rtnExp != null)
+        {
+            rtnExp.accept(this);
+        }
+
+        if (!errorMsg.anyErrors)
+        {
+            for (VarDecl var : unusedLocals)
+            {
+                errorMsg.warning(var.pos, CompWarning.UnusedVariable(var.name));
+            }
+        }
+
+        localEnv = oldLocalEnv;
+        init = oldInit;
+        unusedLocals = oldUnusedLocals;
+        localScopes = oldLocalScopes;
+        return null;
+    }
+
     @Override
     public Object visit(Program p)
     {
         p.classDecls.accept(this);
         p.mainStmt.accept(this);
         
-        // Report any unused classes
-        for (String className : unusedClasses)
+        if (!errorMsg.anyErrors)
         {
-            ClassDecl c = classEnv.get(className);
-            if (c != null)
+            for (String className : unusedClasses)
             {
-                errorMsg.warning(c.pos, CompWarning.UnusedClass(className));
+                ClassDecl c = classEnv.get(className);
+                if (c != null)
+                {
+                    errorMsg.warning(c.pos, CompWarning.UnusedClass(className));
+                }
             }
         }
         
@@ -94,15 +183,15 @@ public class Sem3Visitor extends Visitor
             n.link = localEnv.get(n.name);
 
             // check if initialized
-            if (!init.contains(n.name))
+            if (!init.contains(n.link))
             {
                 errorMsg.error(n.pos, CompError.UninitializedVariable(n.name));
             }
 
             // mark as used
-            if (unusedLocals != null && unusedLocals.contains(n.name))
+            if (unusedLocals != null)
             {
-                unusedLocals.remove(n.name);
+                unusedLocals.remove(n.link);
             }
         }
         else if (currentClass != null)
@@ -151,6 +240,7 @@ public class Sem3Visitor extends Visitor
     {
         ClassDecl oldClass = currentClass;
         currentClass = n;
+        markClassUsed(n.superName);
         n.decls.accept(this);
         currentClass = oldClass;
         return null;
@@ -166,14 +256,21 @@ public class Sem3Visitor extends Visitor
         }
         
         n.breakLink = breakTargetStack.peek();
-        
-        ArrayList<String> chunk = chunkVars.peek();
-        for (String var : chunk)
+
+        if (n.breakLink instanceof Switch && !chunkVars.isEmpty())
         {
-            localEnv.remove(var);
-            init.remove(var);
+            ArrayList<VarDecl> chunk = chunkVars.peek();
+            for (VarDecl var : chunk)
+            {
+                VarDecl active = localEnv.get(var.name);
+                if (active == var)
+                {
+                    localEnv.remove(var.name);
+                }
+                init.remove(var);
+            }
+            chunk.clear();
         }
-        chunk.clear();
         
         return null;
     }
@@ -192,9 +289,11 @@ public class Sem3Visitor extends Visitor
     public Object visit(Switch n)
     {
         breakTargetStack.push(n);
-        chunkVars.push(new ArrayList<String>());
+        chunkVars.push(new ArrayList<VarDecl>());
+        pushLocalScope();
         n.exp.accept(this);
         n.stmts.accept(this);
+        popLocalScope();
         chunkVars.pop();
         breakTargetStack.pop();
         return null;
@@ -218,57 +317,50 @@ public class Sem3Visitor extends Visitor
     @Override
     public Object visit(MethodDecl n)
     {
-        HashMap<String,VarDecl> oldLocalEnv = localEnv;
-        HashSet<String> oldInit = init;
-        HashSet<String> oldUnusedLocals = unusedLocals;
-        
-        localEnv = new HashMap<String,VarDecl>();
-        init = new HashSet<String>();
-        unusedLocals = new HashSet<String>();
-        
-        n.params.accept(this);
-        n.stmts.accept(this);
-        
-        for (String varName : unusedLocals)
-        {
-            VarDecl var = localEnv.get(varName);
-            if (var != null)
-            {
-                errorMsg.warning(var.pos, CompWarning.UnusedVariable(varName));
-            }
-        }
-        
-        localEnv = oldLocalEnv;
-        init = oldInit;
-        unusedLocals = oldUnusedLocals;
-        
-        return null;
+        return analyzeMethod(n, null, null);
+    }
+
+    @Override
+    public Object visit(MethodDeclNonVoid n)
+    {
+        return analyzeMethod(n, n.rtnType, n.rtnExp);
     }
 
     @Override
     public Object visit(ParamDecl n)
     {
+        n.type.accept(this);
         if (localEnv.containsKey(n.name))
         {
             errorMsg.error(n.pos, CompError.DuplicateVariable(n.name));
+            return null;
         }
-        localEnv.put(n.name, n);
-        unusedLocals.add(n.name);
-        init.add(n.name);
+        declareLocal(n);
+        unusedLocals.add(n);
+        init.add(n);
         return null;
     }
 
     @Override
     public Object visit(LocalVarDecl n)
     {
+        n.type.accept(this);
+        boolean declared = false;
         if (localEnv.containsKey(n.name))
         {
             errorMsg.error(n.pos, CompError.DuplicateVariable(n.name));
         }
-        localEnv.put(n.name, n);
+        else
+        {
+            declareLocal(n);
+            unusedLocals.add(n);
+            declared = true;
+        }
         n.initExp.accept(this);
-        init.add(n.name);
-        unusedLocals.add(n.name);
+        if (declared)
+        {
+            init.add(n);
+        }
         return null;
     }
 
@@ -282,9 +374,18 @@ public class Sem3Visitor extends Visitor
             IDExp id = (IDExp)n.lhs;
             if (id.link != null)
             {
-                init.add(id.link.name);
+                init.add(id.link);
             }
         }
+        return null;
+    }
+
+    @Override
+    public Object visit(Block n)
+    {
+        pushLocalScope();
+        n.stmts.accept(this);
+        popLocalScope();
         return null;
     }
 
@@ -295,7 +396,7 @@ public class Sem3Visitor extends Visitor
         // Track variables declared in switch chunks
         if (!chunkVars.isEmpty())
         {
-            chunkVars.peek().add(n.localVarDecl.name);
+            chunkVars.peek().add(n.localVarDecl);
         }
         return null;
     }
