@@ -28,6 +28,7 @@ public class Sem2Visitor extends Visitor
     {
         // Pass 1: link each class to its superclass.
         n.classDecls.accept(this);
+        n.predefinedDecls.accept(this);
 
         // Pass 2: detect cycles and report each class that participates.
         HashMap<ClassDecl, Integer> visitState = new HashMap<ClassDecl, Integer>();
@@ -41,7 +42,24 @@ public class Sem2Visitor extends Visitor
             }
         }
 
+        for (ClassDecl cls : n.predefinedDecls)
+        {
+            if (!visitState.containsKey(cls))
+            {
+                markCycleParticipants(cls, visitState, cycleParticipants);
+            }
+            
+        }
+
         for (ClassDecl cls : n.classDecls)
+        {
+            if (cycleParticipants.contains(cls))
+            {
+                errorMsg.error(cls.pos, CompError.InheritanceCycle(cls.name));
+            }
+        }
+
+        for (ClassDecl cls : n.predefinedDecls)
         {
             if (cycleParticipants.contains(cls))
             {
@@ -53,14 +71,19 @@ public class Sem2Visitor extends Visitor
         return null;
     }
 
-    // Link each ClassDecl to the ClassDecl for its superclass via its 'superLink'
+    // link each ClassDecl to the ClassDecl for its superclass via its 'superLink'
     @Override
     public Object visit(ClassDecl n)
     {
         n.superLink = null;
 
-        // SuperClass checking
-        if (n.superName.equals("Object"))
+        // SuperClass checking - handle empty superName for Object class
+        if (n.superName == null || n.superName.isEmpty())
+        {
+            // Object class has no superclass
+            return null;
+        }
+        else if (n.superName.equals("Object"))
         {
             ClassDecl objectClass = classEnv.get("Object");
             n.superLink = objectClass;

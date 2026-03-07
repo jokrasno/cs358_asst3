@@ -68,6 +68,7 @@ public class Sem1Visitor extends Visitor
     @Override
     public Object visit(MethodDecl n)
     {
+        n.classDecl = currentClass;
         if (currentClass.methodEnv.containsKey(n.name))
         {
             errorMsg.error(n.pos, CompError.DuplicateMethod(n.name));

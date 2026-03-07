@@ -62,7 +62,7 @@ public class Sem3Visitor extends Visitor
 
         for (String className : classEnv.keySet())
         {
-            if (!className.equals("Object") && !className.equals("String") && !className.equals("Lib") && !className.equals("RunMain"))
+            if (!isPredefinedClass(className))
             {
                 unusedClasses.add(className);
             }
@@ -72,6 +72,12 @@ public class Sem3Visitor extends Visitor
     private void pushLocalScope()
     {
         localScopes.push(new ArrayList<VarDecl>());
+    }
+
+    private boolean isPredefinedClass(String className)
+    {
+        return className.equals("Object") || className.equals("String") ||
+               className.equals("Lib") || className.equals("RunMain");
     }
 
     private void popLocalScope()
@@ -123,6 +129,9 @@ public class Sem3Visitor extends Visitor
         localScopes = new Stack<ArrayList<VarDecl>>();
         pushLocalScope();
 
+        // Check if this method belongs to a predefined class
+        boolean isPredefined = currentClass != null && isPredefinedClass(currentClass.name);
+
         if (rtnType != null)
         {
             rtnType.accept(this);
@@ -136,7 +145,8 @@ public class Sem3Visitor extends Visitor
             rtnExp.accept(this);
         }
 
-        if (!errorMsg.anyErrors)
+        // Only report unused variables for non-predefined classes
+        if (!errorMsg.anyErrors && !isPredefined)
         {
             for (VarDecl var : unusedLocals)
             {
@@ -155,16 +165,21 @@ public class Sem3Visitor extends Visitor
     public Object visit(Program p)
     {
         p.classDecls.accept(this);
+        p.predefinedDecls.accept(this);
         p.mainStmt.accept(this);
         
         if (!errorMsg.anyErrors)
         {
             for (String className : unusedClasses)
             {
-                ClassDecl c = classEnv.get(className);
-                if (c != null)
+                // don't report warnings for predefined classes
+                if (!isPredefinedClass(className))
                 {
-                    errorMsg.warning(c.pos, CompWarning.UnusedClass(className));
+                    ClassDecl c = classEnv.get(className);
+                    if (c != null)
+                    {
+                        errorMsg.warning(c.pos, CompWarning.UnusedClass(className));
+                    }
                 }
             }
         }
@@ -176,19 +191,15 @@ public class Sem3Visitor extends Visitor
     @Override
     public Object visit(IDExp n)
     {
-        // System.err.println("DEBUG: Checking local environment for: " + n.name);  // TEMPORARY DEBUG
-
         if (localEnv.containsKey(n.name))
         {
             n.link = localEnv.get(n.name);
 
-            // check if initialized
             if (!init.contains(n.link))
             {
                 errorMsg.error(n.pos, CompError.UninitializedVariable(n.name));
             }
 
-            // mark as used
             if (unusedLocals != null)
             {
                 unusedLocals.remove(n.link);
@@ -196,7 +207,6 @@ public class Sem3Visitor extends Visitor
         }
         else if (currentClass != null)
         {
-            // System.err.println("DEBUG: Checking field for: " + n.name);  // TEMPORARY DEBUG
             ClassDecl c = currentClass;
             while (c != null)
             {
@@ -207,8 +217,6 @@ public class Sem3Visitor extends Visitor
                 }
                 c = c.superLink;
             }
-            // not found anywhere
-            // System.err.println("DEBUG: Undefined variable: " + n.name);  // TEMPORARY DEBUG
             errorMsg.error(n.pos, CompError.UndefinedVariable(n.name));
         }
 
@@ -221,7 +229,6 @@ public class Sem3Visitor extends Visitor
         if (classEnv.containsKey(n.name))
         {
             n.link = classEnv.get(n.name);
-            // mark class as used
             if (unusedClasses != null && unusedClasses.contains(n.name))
             {
                 unusedClasses.remove(n.name);
@@ -393,7 +400,7 @@ public class Sem3Visitor extends Visitor
     public Object visit(LocalDeclStmt n)
     {
         n.localVarDecl.accept(this);
-        // Track variables declared in switch chunks
+        // track variables declared in switch chunks
         if (!chunkVars.isEmpty())
         {
             chunkVars.peek().add(n.localVarDecl);
